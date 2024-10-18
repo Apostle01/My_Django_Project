@@ -1,1 +1,85 @@
-Hello World
+{% extends "base.html" %}
+{% load static %} 
+{% block content %}
+
+<!-- container for site heading, shop now button and stock images -->
+<div class="container">
+  <div class="row mt-5 d-flex justify-content-center text-center">
+    <div class="col-10 mb-3">
+      <h1 class="text-blue text-center">Welcome to My Django Project</h1>
+      <p class="text-turquoise text-blue text-center">
+        Ghanaian cloth haven
+      </p>
+    </div>
+  </div>
+
+  <div class="row mt-3 mb-3 d-flex justify-content-center">
+    <h4>
+      <a
+        href=""  
+        class="shop-now-button btn btn-lg rounded-4 text-uppercase py-3"
+      >
+        Shop Now
+      </a>
+    </h4>
+  </div>
+</div>
+
+<div class="row d-flex justify-content-center text-center w-100 mx-auto">
+  <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
+    <div class="card h-100 border-0">
+      <!-- If statement to show an image if there is one, if not a stock image is shown -->
+      <img
+        class="card-img-top img-fluid"
+        src="{{ MEDIA_URL }}media\Screenshot_20241006_001021_Google.JPG"  
+        alt="Product Image"
+      />
+      <div class="card-body pb-0">
+        <p class="mb-0">Product 1</p> <!-- You can add product descriptions or dynamic content here -->
+      </div>
+      <div class="card-footer bg-white pt-0 border-0 text-left">
+        <div class="row">
+          <div class="col mb-4"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3 d-none d-md-block">
+    <div class="card h-100 border-0">
+      <img
+        class="card-img-top img-fluid"
+        src="{{ MEDIA_URL }}media\Screenshot_20241006_001246.Google.JPG"
+        alt="Product Image"
+      />
+      <div class="card-body pb-0">
+        <p class="mb-0">Product 2</p>
+      </div>
+      <div class="card-footer bg-white pt-0 border-0 text-left">
+        <div class="row">
+          <div class="col mb-4"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3 d-none d-lg-block">
+    <div class="card h-100 border-0">
+      <img
+        class="card-img-top img-fluid"
+        src="{{ MEDIA_URL }}media\Screenshot_20241006_001257.Google(1).JPG"
+        alt="Product Image"
+      />
+      <div class="card-body pb-0">
+        <p class="mb-0">Product 3</p>
+      </div>
+      <div class="card-footer bg-white pt-0 border-0 text-left">
+        <div class="row">
+          <div class="col mb-4"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
