@@ -45,8 +45,8 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'feyden',
     'home',
-    'cloth',
-    'products',
+    # 'cloth',
+    # 'products',
 ]
 
 MIDDLEWARE = [
@@ -65,7 +65,10 @@ ROOT_URLCONF = 'feyden.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],
+        'DIRS': [
+            os.path.join(BASE_DIR / 'templates'),
+            os.path.join(BASE_DIR, 'templates', 'allauth'),
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
