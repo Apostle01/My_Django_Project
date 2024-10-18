@@ -1,5 +1,5 @@
 """
-URL configuration for feyden project.
+URL configuration for my_django_project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/5.1/topics/http/urls/
@@ -16,15 +16,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from . import views
 from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('home.urls')),  # Comma added here
-    path('accounts/', include('allauth.urls')),
-]# Serve media files in development
+    path('', include('home.urls')),  # Routes to the home app
+    path('accounts/', include('allauth.urls')),  # User authentication
+    # path('cloth/', include('cloth.urls')),  # Routes to the cloth app (for managing cloths like kente)
+]
+
+# Serve media files in development
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
