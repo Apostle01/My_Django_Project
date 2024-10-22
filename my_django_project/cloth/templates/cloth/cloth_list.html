@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h2>Cloth List</h2>
+    <ul>
+        {% for cloth in cloths %}
+        <li>
+            <a href="{% url 'cloth_detail' cloth.pk %}">{{ cloth.name }}</a> - {{ cloth.price }} USD
+        </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'add_cloth' %}">Add New Cloth</a>
+{% endblock %}

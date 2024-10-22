@@ -1,0 +1,87 @@
+html {
+    height: 100%;
+}
+
+body {
+    background: url('/media/red-kente.JPG') no-repeat center center fixed;
+    background-size: cover;
+    height: calc(100vh - 164px);
+    color: #555;
+    font-family: 'Fira Sans Extra Condensed', sans-serif; /* Using the Google font from your project */
+}
+
+/* Bulma-based icon alignment */
+.icon {
+    align-items: center;
+    display: inline-flex;
+    justify-content: center;
+    height: 1.5rem;
+    width: 1.5rem;
+}
+
+/* Styling for the brand logo font */
+.logo-font {
+    text-transform: uppercase;
+    font-family: 'Bowlby One SC', sans-serif; /* Custom Google font for logos */
+}
+
+.main-logo-link {
+    width: fit-content;
+}
+
+/* Button styles */
+.shop-now-button,
+.btn-black {
+    background: black;
+    color: white;
+    min-width: 260px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.shop-now-button:hover,
+.shop-now-button:active,
+.shop-now-button:focus,
+.btn-black:hover,
+.btn-black:active,
+.btn-black:focus {
+    background: #222;
+    color: white;
+}
+
+/* Text and Border styles */
+.text-black {
+    color: #000 !important;
+}
+
+.border-black {
+    border: 1px solid black !important;
+}
+
+/* -------------------------------- Media Queries */
+
+/* Larger container on xl screens */
+@media (min-width: 1200px) {
+    .container {
+        max-width: 80%;
+    }
+}
+
+/* Fixed top navbar on medium screens and up */
+@media (min-width: 992px) {
+    .fixed-top-desktop-only {
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: 0;
+        z-index: 1030;
+    }
+
+    /* Add padding to the header to prevent overlap */
+    .header-container {
+        padding-top: 164px;
+    }
+}
