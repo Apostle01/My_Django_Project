@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h2>{{ cloth.name }}</h2>
+    <p>{{ cloth.description }}</p>
+    <p><strong>Price:</strong> {{ cloth.price }} USD</p>
+    {% if cloth.image %}
+        <img src="{{ cloth.image.url }}" alt="{{ cloth.name }}">
+    {% endif %}
+    <a href="{% url 'cloth_list' %}">Back to list</a>
+{% endblock %}

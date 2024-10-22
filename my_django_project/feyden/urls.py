@@ -21,14 +21,10 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('home.urls')),  # Routes to the home app
-    path('accounts/', include('allauth.urls')),  # User authentication
-    # path('cloth/', include('cloth.urls')),  # Routes to the cloth app (for managing cloths like kente)
-]
-
-# Serve media files in development
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    path('', include('home.urls')),
+    path('accounts/', include('allauth.urls')),
+    path('cloth/', include('cloth.urls')),  # Assuming cloth is one of your apps
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
 
