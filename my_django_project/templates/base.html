@@ -62,7 +62,7 @@
     <header class="container-fluid">
       <div class="row d-flex justify-content-center align-items-center mt-3">
         <a href="{% url 'home' %}">
-          <img class="brand-logo" src="{{ MEDIA_URL }}images/my_django_project.jpg" alt="My_Django_Project"/>
+          <img class="brand-logo" src="{% get_media_prefix %}images/white-kente.jpg" alt="My_Django_Project"/>
         </a>
       </div>
       {% include './includes/main_nav.html' %}

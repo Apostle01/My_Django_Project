@@ -46,6 +46,8 @@ INSTALLED_APPS = [
     'feyden',
     'home',
     'cloth',
+    'category',
+    'accounts',
     # 'products',
 ]
 
@@ -103,6 +105,8 @@ LOGIN_REDIRECT_URL = '/'
 
 
 WSGI_APPLICATION = 'feyden.wsgi.application'
+
+AUTH_USER_MODEL = 'accounts.Account'
 
 
 # Database
