@@ -1,55 +1,115 @@
-html {
+html, body {
     height: 100%;
+    margin: 0;
+    padding: 0;
 }
 
+/* Body background */
 body {
     background: url('/media/red-kente.JPG') no-repeat center center fixed;
     background-size: cover;
-    height: calc(100vh - 164px);
-    color: #555;
-    font-family: 'Fira Sans Extra Condensed', sans-serif; /* Using the Google font from your project */
+    height: 50%;
+    color: #333;
+    font-family: 'Fira Sans', sans-serif; /* Clean, modern Google font */
+    line-height: 1.6;
 }
 
-/* Bulma-based icon alignment */
+/* Navbar styles */
+nav {
+    background-color: rgba(0, 0, 0, 0.7); /* Transparent black for modern look */
+    padding: 10px 20px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: flex-end;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.1em;
+    font-weight: bold;
+    padding: 10px;
+    transition: background-color 0.3s ease;
+}
+
+nav ul li a:hover {
+    background-color: rgba(255, 255, 255, 0.2); /* Subtle hover effect */
+    border-radius: 5px;
+}
+
+/* Logo styles */
+.main-logo-link {
+    display: flex;
+    align-items: left;
+    justify-content: flex-start;
+    position: absolute;
+    left: 20px;
+    top: 10px;
+}
+
+.brand-logo {
+    height: 70px; /* Adjust logo size */
+    width: auto;
+}
+
+.logo-font {
+    font-family: 'Bowlby One SC', sans-serif;
+    font-size: 1.5em;
+    color: white;
+    margin-left: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Button styles */
+.shop-now-button,
+.btn-black {
+    background: #000;
+    color: #fff;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 30px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.shop-now-button:hover,
+.btn-black:hover {
+    background: #444;
+    transform: scale(1.05); /* Slight zoom effect */
+}
+
+.shop-now-button:active,
+.btn-black:active {
+    background: #111;
+    transform: scale(0.98); /* Slight shrink on click */
+}
+
+/* Icon alignment */
 .icon {
     align-items: center;
     display: inline-flex;
     justify-content: center;
     height: 1.5rem;
     width: 1.5rem;
-}
-
-/* Styling for the brand logo font */
-.logo-font {
-    text-transform: uppercase;
-    font-family: 'Bowlby One SC', sans-serif; /* Custom Google font for logos */
-}
-
-.main-logo-link {
-    width: fit-content;
-}
-
-/* Button styles */
-.shop-now-button,
-.btn-black {
-    background: black;
-    color: white;
-    min-width: 260px;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.shop-now-button:hover,
-.shop-now-button:active,
-.shop-now-button:focus,
-.btn-black:hover,
-.btn-black:active,
-.btn-black:focus {
-    background: #222;
-    color: white;
 }
 
 /* Text and Border styles */
@@ -61,16 +121,28 @@ body {
     border: 1px solid black !important;
 }
 
-/* -------------------------------- Media Queries */
+/* Footer styles */
+footer {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 20px;
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    font-size: 0.9em;
+}
+
+/* Media Queries */
 
 /* Larger container on xl screens */
 @media (min-width: 1200px) {
     .container {
-        max-width: 80%;
+        max-width: 75%;
     }
 }
 
-/* Fixed top navbar on medium screens and up */
+/* Fixed top navbar and resized elements for medium screens and up */
 @media (min-width: 992px) {
     .fixed-top-desktop-only {
         position: fixed;
@@ -82,6 +154,26 @@ body {
 
     /* Add padding to the header to prevent overlap */
     .header-container {
-        padding-top: 164px;
+        padding-top: 150px;
+    }
+}
+
+/* Mobile responsive navbar */
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav ul li {
+        margin: 10px 0;
+    }
+
+    .brand-logo {
+        height: 50px; /* Smaller logo for mobile */
+    }
+
+    .logo-font {
+        font-size: 1.2em;
     }
 }
