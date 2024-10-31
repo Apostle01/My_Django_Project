@@ -18,16 +18,29 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from . import views
+from bag import views as bag_views
+from django.contrib.auth import views as auth_views
+from accounts import views as accounts_views  # Profile view is here
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('home.urls')),
-    path('accounts/', include('allauth.urls')),
-    path('cloth/', include('cloth.urls')),  # Assuming cloth is one of your apps
+    path('bag/', bag_views.bag_view, name='bag'),
+
+    path('accounts/', include('allauth.urls')),  # Using allauth for accounts
+    path('cloth/', include('cloth.urls')),  # Cloth app URLs
+    
+    # Profile view from accounts app
+    path('profile/', accounts_views.profile, name='user_profile'),
+    path('logout/', auth_views.LogoutView.as_view(), name='logout'),  # Logout view
 ]
 
+# Static files in development
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
 
 
 
