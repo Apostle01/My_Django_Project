@@ -1,62 +1,58 @@
-<nav class="row navbar">
-    <div class="col-12 my-auto d-lg-flex py-1 py-lg-0">
-
+<nav class="navbar row">
+    <div class="col-12 d-lg-flex align-items-center py-1 py-lg-0">
+        
         <!-- Search bar -->
         <div class="col-12 col-lg-6 offset-lg-3 my-auto py-1 py-lg-0">
             <form method="GET" action="">
-                <div class="input-group w-100">
+                <div class="input-group">
                     <input class="form-control border rounded-1" type="text" name="q" placeholder="Search our site" aria-label="search">
                     <div class="input-group-append">
-                        <button class="form-control btn btn-blue border border-blue rounded-0" type="submit" aria-label="submit search">
-                            <span><i class="fa-solid fa-magnifying-glass"></i>
-                            </span>
+                        <button class="btn btn-blue border-0 rounded-1" type="submit" aria-label="submit search">
+                            <i class="fa-solid fa-magnifying-glass"></i>
                         </button>
                     </div>
                 </div>
             </form>
         </div>
 
-        <div class="col-12 col-lg-3 my-auto py-1 py-lg-0">
-            <ul class="list-inline list-unstyled text-center right my-0">
+        <!-- User account and bag section -->
+        <div class="col-12 col-lg-3 d-flex justify-content-center justify-content-lg-end py-1 py-lg-0">
+            <ul class="list-inline text-center mb-0">
 
-                <!-- Account -->
+                <!-- Account dropdown -->
                 <li class="list-inline-item dropdown">
                     <a href="#" class="nav-link text-blue" id="user-options" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <div>
-                            <div><i class="fas fa-user fa-xl"></i></div>
-                            <p class="my-0">Account</p>
-                        </div>
+                        <i class="fas fa-user fa-xl"></i>
+                        <p class="my-0">Account</p>
                     </a>
-                    <div class="dropdown-menu border-0" aria-labelledby="user-options">
+                    <div class="dropdown-menu dropdown-menu-right border-0" aria-labelledby="user-options">
                         {% if request.user.is_authenticated %}
                             {% if request.user.is_superuser %}
-                                <a href="" class="dropdown-item text-blue">Product Management</a>
+                                <a href="{% url 'product_management' %}" class="dropdown-item text-blue">Product Management</a>
                             {% endif %}
-                                <a href="" class="dropdown-item text-blue">My Profile</a>
-                                <a href="" class="dropdown-item text-blue">Sign Out</a>
-                            {% else %}
-                                <a href="" class="dropdown-item text-blue">Register</a>
-                                <a href="" class="dropdown-item text-blue">Sign In</a>
+                            <a href="{% url 'profile' %}" class="dropdown-item text-blue">My Profile</a>
+                            <a href="{% url 'logout' %}" class="dropdown-item text-blue">Sign Out</a>
+                        {% else %}
+                            <a href="{% url 'register' %}" class="dropdown-item text-blue">Register</a>
+                            <a href="{% url 'login' %}" class="dropdown-item text-blue">Sign In</a>
                         {% endif %}
                     </div>
                 </li>
 
-                <!-- Bag -->
+                <!-- Shopping bag -->
                 <li class="list-inline-item">
-                    <a href="" class="nav-link text-blue">
-                        <div>
-                            <div><i class="fa-solid fa-basket-shopping fa-xl"></i></div>
-                            <p class="my-0">
-                                {% if total %}
+                    <a href="{% url 'bag' %}" class="nav-link text-blue">
+                        <i class="fa-solid fa-basket-shopping fa-xl"></i>
+                        <p class="my-0">
+                            {% if grand_total %}
                                 £{{ grand_total|floatformat:2 }}
-                                {% else %}
-                                    £0.00
-                                {% endif %}
-                            </p>
-                        </div>
+                            {% else %}
+                                £0.00
+                            {% endif %}
+                        </p>
                     </a>
                 </li>
             </ul>
         </div>
     </div>
-</nav>    
+</nav>

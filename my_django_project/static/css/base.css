@@ -2,21 +2,20 @@ html, body {
     height: 100%;
     margin: 0;
     padding: 0;
+    font-family: 'Fira Sans', sans-serif;
+    color: #333;
+    line-height: 1.6;
 }
 
 /* Body background */
 body {
     background: url('/media/red-kente.JPG') no-repeat center center fixed;
     background-size: cover;
-    height: 50%;
-    color: #333;
-    font-family: 'Fira Sans', sans-serif; /* Clean, modern Google font */
-    line-height: 1.6;
 }
 
 /* Navbar styles */
 nav {
-    background-color: rgba(0, 0, 0, 0.7); /* Transparent black for modern look */
+    background-color: rgba(0, 0, 0, 0.8);
     padding: 10px 20px;
     position: fixed;
     top: 0;
@@ -25,44 +24,56 @@ nav {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
+/* Navbar items */
 nav ul {
     list-style-type: none;
     padding: 0;
     margin: 0;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-around;
 }
 
 nav ul li {
-    margin: 0 15px;
+    margin: 0 10px;
 }
 
 nav ul li a {
     color: white;
     text-decoration: none;
-    font-size: 1.1em;
+    font-size: 1em;
     font-weight: bold;
-    padding: 10px;
+    padding: 8px 12px;
     transition: background-color 0.3s ease;
 }
 
 nav ul li a:hover {
-    background-color: rgba(255, 255, 255, 0.2); /* Subtle hover effect */
+    background-color: rgba(255, 255, 255, 0.3);
     border-radius: 5px;
+}
+
+/* Dropdown menu */
+.dropdown-menu a {
+    color: #333;
+    padding: 8px 15px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-menu a:hover {
+    background-color: #f8f9fa;
+    color: #0056b3;
 }
 
 /* Logo styles */
 .main-logo-link {
     display: flex;
-    align-items: left;
-    justify-content: flex-start;
+    align-items: center;
     position: absolute;
     left: 20px;
-    top: 10px;
 }
 
 .brand-logo {
-    height: 70px; /* Adjust logo size */
+    height: 50px; /* Adjust logo size */
     width: auto;
 }
 
@@ -70,9 +81,8 @@ nav ul li a:hover {
     font-family: 'Bowlby One SC', sans-serif;
     font-size: 1.5em;
     color: white;
-    margin-left: 15px;
+    margin-left: 10px;
     text-transform: uppercase;
-    letter-spacing: 1px;
 }
 
 /* Button styles */
@@ -80,27 +90,27 @@ nav ul li a:hover {
 .btn-black {
     background: #000;
     color: #fff;
-    padding: 12px 25px;
+    padding: 10px 20px;
     border: none;
-    border-radius: 30px;
+    border-radius: 20px;
     font-size: 1em;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.3s ease;
     text-transform: uppercase;
     font-weight: bold;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
 }
 
 .shop-now-button:hover,
 .btn-black:hover {
     background: #444;
-    transform: scale(1.05); /* Slight zoom effect */
+    transform: scale(1.05);
 }
 
 .shop-now-button:active,
 .btn-black:active {
-    background: #111;
-    transform: scale(0.98); /* Slight shrink on click */
+    background: #222;
+    transform: scale(0.98);
 }
 
 /* Icon alignment */
@@ -127,9 +137,6 @@ footer {
     color: white;
     padding: 20px;
     text-align: center;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
     font-size: 0.9em;
 }
 
@@ -138,23 +145,20 @@ footer {
 /* Larger container on xl screens */
 @media (min-width: 1200px) {
     .container {
-        max-width: 75%;
+        max-width: 80%;
     }
 }
 
-/* Fixed top navbar and resized elements for medium screens and up */
+/* Adjust navbar for medium screens and up */
 @media (min-width: 992px) {
     .fixed-top-desktop-only {
         position: fixed;
         top: 0;
-        right: 0;
-        left: 0;
         z-index: 1030;
     }
 
-    /* Add padding to the header to prevent overlap */
     .header-container {
-        padding-top: 150px;
+        padding-top: 120px;
     }
 }
 
@@ -166,11 +170,11 @@ footer {
     }
 
     nav ul li {
-        margin: 10px 0;
+        margin: 5px 0;
     }
 
     .brand-logo {
-        height: 50px; /* Smaller logo for mobile */
+        height: 40px;
     }
 
     .logo-font {

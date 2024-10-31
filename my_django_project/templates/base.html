@@ -2,150 +2,113 @@
 
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     {% block meta %}
-      <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-      <meta charset="utf-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-      <meta name="description" content="A hub for authentic Ghanaian Kente and other fabrics" />
-      <meta name="keywords" content="Ghanaian Cloth, African Fabrics, Traditional Wear, Kente Cloth" />
-      <meta name="author" content="My_Django_Project" />
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="A hub for authentic Ghanaian Kente and other fabrics" />
+    <meta name="keywords" content="Ghanaian Cloth, African Fabrics, Traditional Wear, Kente Cloth" />
+    <meta name="author" content="My_Django_Project" />
     {% endblock %}
 
-    {% block extra_meta %}
-    {% endblock %}
+    {% block extra_meta %}{% endblock %}
 
     {% block corecss %}
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-      crossorigin="anonymous"/>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
-      rel="stylesheet"/>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
-    {% comment %} <link
-      rel="icon" type="image/x-icon"
-      href="{% static 'favicon/kente-emporium-favicon.png' %}"/> {% endcomment %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
     {% endblock %}
 
-    {% block extra_css %}
-    {% endblock %}
+    {% block extra_css %}{% endblock %}
 
     {% block corejs %}
-    <script
-      src="https://kit.fontawesome.com/68aa8a6d33.js"
-      crossorigin="anonymous"></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"
-      integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
-      crossorigin="anonymous"></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-      crossorigin="anonymous"></script>
-    <script
-      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-      crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/68aa8a6d33.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     {% endblock %}
 
-    {% block extra_js %}
-    {% endblock %}
-
-    <title>My_Django_Project {% block extra_title %}{% endblock %}</title>
-  </head>
-  <body class="d-flex flex-column min-vh-100">
+    {% block extra_js %}{% endblock %}
+    
+    <title>My_Django_Project{% block extra_title %}{% endblock %}</title>
+</head>
+<body class="d-flex flex-column min-vh-100">
     <header class="container-fluid">
-      <div class="row d-flex justify-content-center align-items-center mt-3">
-        <a href="{% url 'home' %}">
-          <img class="brand-logo" src="{% get_media_prefix %}images/white-kente.jpg" alt="My_Django_Project"/>
-        </a>
-      </div>
-      {% include './includes/main_nav.html' %}
-      {% include 'includes/categories_nav.html' %}
-      <div class="row text-center delivery-banner">
-        <div class="col">
-          <h4 class="my-3 text-blue">
-            <i class="fa-solid fa-truck-fast"></i> Free Delivery on orders over ₵{{ free_delivery_threshold }}
-          </h4>
+        <div class="row d-flex justify-content-center align-items-center mt-3">
+            {% comment %} <a href="{% url 'profile' %}">Profile</a> {% endcomment %}
+            <a href="{% url 'home' %}">Home</a>
+            <img class="brand-logo" src="{% static 'images/white-kente.jpg' %}" alt="My_Django_Project" />
         </div>
-      </div>
+        {% include 'includes/main_nav.html' %}
+        {% include 'includes/categories_nav.html' %}
+        <div class="row text-center delivery-banner">
+            <div class="col">
+                <h4 class="my-3 text-blue">
+                    <i class="fa-solid fa-truck-fast"></i> Free Delivery on orders over ₵{{ free_delivery_threshold }}
+                </h4>
+            </div>
+        </div>
+          <!-- User Profile and Logout Links -->
+          <div class="row d-flex justify-content-end">
+            {% if user.is_authenticated %}
+                <a href="{% url 'user_profile' %}" class="btn btn-link">Profile</a>
+                <a href="{% url 'logout' %}" class="btn btn-link">Logout</a>
+            {% else %}
+                <a href="{% url 'account_login' %}" class="btn btn-link">Login</a>
+            {% endif %}
+        </div>
     </header>
 
     {% if messages %}
     <div class="message-container">
-      {% for message in messages %}
-      {% with message.level as level %}
-      {% if level == 40 %}
-        {% include 'includes/toasts/toast_error.html' %}
-      {% elif level == 30 %}
-        {% include 'includes/toasts/toast_warning.html' %}
-      {% elif level == 25 %}
-        {% include 'includes/toasts/toast_success.html' %}
-      {% else %}
-        {% include 'includes/toasts/toast_info.html' %}
-      {% endif %}
-      {% endwith %}
-      {% endfor %}
+        {% for message in messages %}
+            {% if message.level == 40 %}
+                {% include 'includes/toasts/toast_error.html' %}
+            {% elif message.level == 30 %}
+                {% include 'includes/toasts/toast_warning.html' %}
+            {% elif message.level == 25 %}
+                {% include 'includes/toasts/toast_success.html' %}
+            {% else %}
+                {% include 'includes/toasts/toast_info.html' %}
+            {% endif %}
+        {% endfor %}
     </div>
     {% endif %}
 
-    {% block page_header %}
-    {% endblock %}
-    {% block content %}
-    {% endblock %}
+    {% block page_header %}{% endblock %}
+    {% block content %}{% endblock %}
 
     <footer class="mt-auto">
-      <div class="container-fluid">
-        <div class="row text-center d-flex justify-content-around">
-          <!-- Contact Section -->
-          <div class="col-sm-3">
-            <h4 class="pt-3 pb-3">Contact</h4>
-            <a href="" class="text-black">
-              Contact My_Django_Project
-            </a>
-            <p>Tel: +233 24 1234567</p>
-            <a href="https://www.facebook.com/" class="text-black" target="_blank">
-              <i class="fa-brands fa-square-facebook fa-2x"></i>
-              <span class="fa-sr-only">Link to Facebook. Opens in a new tab</span>
-            </a>
-            <a href="https://www.instagram.com/" class="text-black" target="_blank">
-              <i class="fa-brands fa-instagram fa-2x"></i>
-              <span class="fa-sr-only">Link to Instagram. Opens in a new tab</span>
-            </a>
-            <a href="https://www.youtube.com/" class="text-black" target="_blank">
-                <i class="fa-brands fa-youtube fa-2x"></i>
-                <span class="fa-sr-only">Link to Youtube. Opens in a new tab</span>
-              </a>
-            </div>
+        <div class="container-fluid">
+            <div class="row text-center d-flex justify-content-around">
+                <!-- Contact Section -->
+                <div class="col-sm-3">
+                    <h4 class="pt-3 pb-3">Contact</h4>
+                    <p>Contact My_Django_Project</p>
+                    <p>Tel: +233 24 1234567</p>
+                    <a href="https://www.facebook.com/" target="_blank"><i class="fa-brands fa-square-facebook fa-2x"></i></a>
+                    <a href="https://www.instagram.com/" target="_blank"><i class="fa-brands fa-instagram fa-2x"></i></a>
+                    <a href="https://www.youtube.com/" target="_blank"><i class="fa-brands fa-youtube fa-2x"></i></a>
+                </div>
   
-            <!-- Payment Section -->
-            <div class="col-sm-3 pt-3 pb-3">
-              <h4 class="pb-3">Payments</h4>
-              <p>
-                Payments supported by <br /><i class="fa-brands fa-stripe fa-3x">
-                  <span class="fa-sr-only">
-                    Stripe - a Payment Processing Platform for the Internet
-                  </span>
-                </i>
-              </p>
-              <p>Cards Accepted:</p>
-              <i class="fa-brands fa-cc-visa fa-2x"><span class="fa-sr-only">Visa</span></i>
-              <i class="fa-brands fa-cc-mastercard fa-2x"><span class="fa-sr-only">Mastercard</span></i>
-              <i class="fa-brands fa-cc-amex fa-2x"><span class="fa-sr-only">Amex</span></i>
+                <!-- Payment Section -->
+                <div class="col-sm-3 pt-3 pb-3">
+                    <h4 class="pb-3">Payments</h4>
+                    <p>Supported by <i class="fa-brands fa-stripe fa-3x"></i></p>
+                    <p>Cards Accepted:</p>
+                    <i class="fa-brands fa-cc-visa fa-2x"></i>
+                    <i class="fa-brands fa-cc-mastercard fa-2x"></i>
+                    <i class="fa-brands fa-cc-amex fa-2x"></i>
+                </div>
             </div>
-          </div>
         </div>
-      </footer>
-  
-      {% block postloadjs %}
-      <script>
+    </footer>
+
+    {% block postloadjs %}
+    <script>
         $(".toast").toast("show");
-      </script>
-      {% endblock %}
-    </body>
-  </html>
+    </script>
+    {% endblock %}
+</body>
+</html>

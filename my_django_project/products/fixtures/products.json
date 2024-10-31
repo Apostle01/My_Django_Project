@@ -1,0 +1,170 @@
+[
+    {
+      "pk": 1,
+      "model": "products.product",
+      "fields": {
+        "sku": "pp5001340155",
+        "name": "SAMSUNG S90D 55 inch OLED 4K HDR Smart TV",
+        "description": "The OLED display on this Samsung S90D TV brings a bit of cinema magic to your living room. Because the pixels are self-lit, the TV can accurately control the shadows and highlights. Everything looks much more real with deep blacks and billions of colours that burst from the screen. OLED HDR+ throws you right into lifelike action and lets you see every little detail in mind-boggling clarity - those movie monsters just got a whole lot scarier. The NQ4 AI Gen2 Processor is the brain of the TV. It's busy in the background boosting the brightness, contrast, and sound of everything you watch. Plus, HD content gets an upgrade to near 4K quality. And it's able to do this on the fly using AI and 20 neural networks. Pretty smart.",
+        "price": 1499.00,
+        "category": 1,
+        "rating": 4.6,
+        "image_url": "https://tech-spot-rdhadda.s3.eu-north-1.amazonaws.com/media/10265128.webp",
+        "image": "10265128.webp"
+      }
+    },
+    {
+      "pk": 2,
+      "model": "products.product",
+      "fields": {
+        "sku": "pp5001340156",
+        "name": "LG 65QNED86T6A 65 Smart 4K Ultra HD HDR QNED TV with Amazon Alexa",
+        "description": "The grass really is greener with the LG QNED86 TV. Quantum Dot Nanocell technology makes your entertainment pop with 100% colour volume. It's not just vibrant, it's true-to-life with a full spectrum of tones that LCD TVs didn't quite nail before. The a8 AI Processor is the brains behind the operation. It's borrowed some tricks from the big-league OLED TVs to bring you super sharp images and sound that feels like it's all around you. Older entertainment is given a new lease of life with AI Super Upscaling while AI Sound Pro transforms 2-channel audio into virtual 9.1.2 surround sound for that cinema experience. Speaking of entertainment, you'll be spoilt for choice. There's something for the whole family on webOS, LG's smart platform which includes Netflix, Disney+ and a whole lot more.",
+        "price": 1099.00,
+        "category": 1,
+        "rating": 4.8,
+        "image_url": "https://tech-spot-rdhadda.s3.eu-north-1.amazonaws.com/media/10263144.webp",
+        "image": "10263144.webp"
+      }
+    },
+    {
+      "pk": 3,
+      "model": "products.product",
+      "fields": {
+        "sku": "pp5001340157",
+        "name": "SONY BRAVIA 7 55 inch QLED XR Mini LED 4K HDR Google TV - K55XR70PU",
+        "description": "The Sony BRAVIA 7 brings a bit of that big screen magic to your living room with its QLED XR Mini LED display. Thousands of mini LEDs are packed into the screen, all precisely controlled by the XR Backlight Master Drive. This translates to impressively deep blacks, subtle shadow details, and luminous highlights in every scene. It's the very same tech that's used for Sony's pro monitors in Tinseltown. Sony have teamed up with some of the world's top streaming studios to develop calibrated modes for the likes of Netflix and Prime Video. You'll be able to enjoy movies just as the creators intended, without playing around in the settings menu. Plus, sound is in perfect sync with Acoustic Multi-Audio. It turns the screen into a speaker – literally – with sound coming from where the action is happening. Even in a hectic battle scene, you'll be able to pinpoint the clash of swords.",
+        "price": 1399.00,
+        "category": 1,
+        "rating": 4.9,
+        "image_url": "https://tech-spot-rdhadda.s3.eu-north-1.amazonaws.com/media/10264112.webp",
+        "image": "10264112.webp"
+      }
+    },
+    {
+      "pk": 4,
+      "model": "products.product",
+      "fields": {
+        "sku": "pp5001340158",
+        "name": "HISENSE 65U7KQTUK 65 Smart 4K Ultra HD HDR Mini-LED TV with Amazon Alexa",
+        "description": "Can you imagine a billion colours? That's how many this Hisense TV can show thanks to Quantum Dot Colour technology. What that actually means is more lifelike colour, from the azure blue waters of a tropical reef, to the delicate pinks in a sunset. The Mini-LED display helps banish annoying halos and ghosting for a sharper picture. Dolby Vision IQ is also on hand to deliver HDR content – it handles everything from deep blacks to vibrant colours, and it's perfect for moody dark scenes.",
+        "price": 745.00,
+        "category": 1,
+        "rating": 4.1,
+        "image_url": "https://tech-spot-rdhadda.s3.eu-north-1.amazonaws.com/media/10250374.webp",
+        "image": "10250374.webp"
+      }
+    },
+    {
+      "pk": 5,
+      "model": "products.product",
+      "fields": {
+        "sku": "pp5001340159",
+        "name": "JVC LT-43CR330 Roku TV 43 Smart Full HD HDR LED TV",
+        "description": "JVC'S latest smart TV",
+        "price": 189.00,
+        "category": 1,
+        "rating": 2.8,
+        "image_url": "https://tech-spot-rdhadda.s3.eu-north-1.amazonaws.com/media/10250030.webp",
+        "image": "10250030.webp"
+      }
+    },
+    {
+      "pk": 6,
+      "model": "products.product",
+      "fields": {
+        "sku": "pp5001340160",
+        "name": "APPLE MacBook Air 13.6 (2024) - M3, 256 GB SSD, Space Grey",
+        "description": "Whatever you need to do, MacBook Air will make it look easy. Video editing and gaming are no match for the M3 chip's powerful CPU and GPU. In fact, it's up to 1.6x faster than the M1 MacBook Air, so you'll really by flying through your workflows. The 13 Liquid Retina display makes every detail shine. It displays a billion colours, so you can appreciate every subtle shade. Just what you need for your creative projects and just what you want for movie nights. It's got a massive battery, that will keep you away from the plug for up to 18 hours on a single charge. All that power is hiding in an all-aluminium body that's only 1.13 mm thin, and it doesn't even need a fan. Apple Intelligence helps you write, express yourself and get things done effortlessly. It draws on your personal context while setting a brand-new standard for privacy in AI.",
+        "price": 949.00,
+        "category": 2,
+        "rating": 4.8,
+        "image_url": "https://tech-spot-rdhadda.s3.eu-north-1.amazonaws.com/media/10261860.webp",
+        "image": "10261860.webp"
+      }
+    },
+    {
+      "pk": 7,
+      "model": "products.product",
+      "fields": {
+        "sku": "pp5001340161",
+        "name": "LENOVO IdeaPad Flex 5 14 2 in 1 Chromebook Plus - Intel® Core™ i3, 256 GB SSD, Blue",
+        "description": "The IdeaPad Flex 5 is as flexible as your day. Its 360-degree hinge lets you write an essay in laptop mode, then flip it to tent mode to watch movies once you've hit 'submit'. The WUXGA IPS touchscreen is a bit taller than Full HD, giving you a bigger view when you're working between multiple windows. And it's all powered by a 12th gen Intel® Core™ i3 processor, so you can run all your daily tasks without being slowed down.",
+        "price": 349.00,
+        "category": 2,
+        "rating": 4.2,
+        "image_url": "https://tech-spot-rdhadda.s3.eu-north-1.amazonaws.com/media/10251747.webp",
+        "image": "10251747.webp"
+      }
+    },
+    {
+      "pk": 8,
+      "model": "products.product",
+      "fields": {
+        "sku": "pp5001340162",
+        "name": "HP Pavilion 16-af0505sa 16 Laptop - Intel® Core™ Ultra 5, 512 GB SSD, Sky Blue",
+        "description": "Why wait around? This HP Pavilion has an Intel® Core™ Ultra 5 processor which is super-fast and accelerated by AI to be even smarter. Perfect for speeding though work or school assignments. The brilliant Full HD+ screen is supported by DTS:X Ultra audio, so your favourite shows will look and sound just right. And thanks to Windows Hello facial recognition you don't have to waste time typing in passwords.",
+        "price": 849.00,
+        "category": 2,
+        "rating": 4.6,
+        "image_url": "https://tech-spot-rdhadda.s3.eu-north-1.amazonaws.com/media/10264286.webp",
+        "image": "10264286.webp"
+      }
+    },
+    {
+      "pk": 9,
+      "model": "products.product",
+      "fields": {
+        "sku": "pp5001340163",
+        "name": "SONY PlayStation 5 (Slim)",
+        "description": "The new PS5 is slimmed down, but it's still just as fast. It's 24% lighter and 30% smaller than the original – so now it actually might fit in that tight spot under the telly. And even though it's little, it still packs a punch. Jump in with shiny 4K Ultra HD graphics at up to 120 fps for silky-smooth life-like action. There's a chunkier 1 TB SSD too, which gives you loads of space for your favourite titles. An extra USB-C port lets you charge a couple of controllers at once, so you're ready for some couch co-op.",
+        "price": 479.00,
+        "category": 3,
+        "rating": 4.9,
+        "image_url": "https://tech-spot-rdhadda.s3.eu-north-1.amazonaws.com/media/10258393.webp",
+        "image": "10258393.webp"
+      }
+    },
+    {
+      "pk": 10,
+      "model": "products.product",
+      "fields": {
+        "sku": "pp5001340164",
+        "name": "APPLE iPhone 15 - 128 GB, Black",
+        "description": "There's no waiting around with Apple iPhone 15. The A16 Bionic chip running the show is a powerhouse that will make light work of any app or game. It can do it all day long, too. With up to 26 hours of battery life, you can leave the charger at home. And when it's time to charge, the USB Type-C port can do it faster than ever. Need to capture the perfect moment before it passes? The 48 MP advanced dual camera system takes photos that are full of life and colour. And they'll look amazing on the 6.1 Super Retina XDR display, just like everything else.",
+        "price": 699.00,
+        "category": 4,
+        "rating": 4.9,
+        "image_url": "https://tech-spot-rdhadda.s3.eu-north-1.amazonaws.com/media/M10254987_black.webp",
+        "image": "M10254987_black.webp"
+      }
+    },
+    {
+      "pk": 11,
+      "model": "products.product",
+      "fields": {
+        "sku": "pp5001340165",
+        "name": "NINJA Double Stack XL SL400UK Air Fryer - Grey",
+        "description": "Double down at dinner time with this Ninja Double Stack XL. Its stackable air fryer design gives you 2 drawers on top of each other. That means it takes up less space on your worktop than the average fryer. And it doesn't skimp on capacity either. There's enough space to cook a whole 1.4 kg roast chicken in each drawer. If you've got a family of fussy eaters, throw in the wire racks and you can make 4 different meals at the same time. But it's more than just an air fryer. With its 6 cooking functions, including Roast, Bake and Dehydrate, you can rustle up all your favourite scran with little to no oil. Enjoy your fried-favourites without the guilt.",
+        "price": 229.00,
+        "category": 6,
+        "rating": 4.9,
+        "image_url": "https://tech-spot-rdhadda.s3.eu-north-1.amazonaws.com/media/10261664.webp",
+        "image": "10261664.webp"
+      }
+    },
+    {
+      "pk": 12,
+      "model": "products.product",
+      "fields": {
+        "sku": "pp5001340166",
+        "name": "RING Battery Video Doorbell Plus",
+        "description": "Keep track of who's at your door with this Ring Video Doorbell Plus. With 1536p HD video, you'll be able to clearly see who's paying you a visit, wanted or otherwise. You can even greet them with a friendly “hello” using the 2-way talk feature – it's also handy for getting rid of those pesky cold-callers. Expecting a delivery? The Head-to-Toe view lets you see if the postie has left a parcel on your doorstep, so you can keep an eye on it when you're not at home.",
+        "price": 129.00,
+        "category": 5,
+        "rating": 4.9,
+        "image_url": "https://tech-spot-rdhadda.s3.eu-north-1.amazonaws.com/media/10250397.webp",
+        "image": "10250397.webp"
+      }
+    }
+  ]
