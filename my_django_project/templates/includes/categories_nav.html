@@ -1,41 +1,60 @@
 <div class="row">
-  <div class="col d-flex justify-content-lg-center">
+  <div class="col d-flex justify-content-center">
       <nav class="navbar navbar-expand-lg">
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#categories-nav" aria-controls="categories-nav" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"><i class="fa-solid fa-bars"></i></span>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#categoriesNav" aria-controls="categoriesNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
           </button>
-
-          <div class="collapse navbar-collapse" id="categories-nav">
+          <div class="collapse navbar-collapse" id="categoriesNav">
               <ul class="navbar-nav mx-auto">
-                  
-                  <!-- All Products Dropdown -->
+                  <li class="nav-item">
+                      <a class="nav-link" href="{% url 'all_products' %}">All Products</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="{% url 'category' 'kente' %}">Kente Cloth</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="{% url 'category' 'gtp-authentic' %}">GTP Authentic Print</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="{% url 'category' 'akosombo' %}">Akosombo Textile</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="{% url 'deals' %}">Deals</a>
+                  </li>
                   <li class="nav-item dropdown">
                       <a href="#" class="nav-link mr-5 text-blue" id="all-products-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          All Products
+              All Products
                       </a>
                       <div class="dropdown-menu border-0" aria-labelledby="all-products-link">
-                          <a class="dropdown-item" href="{% url 'product_sort' 'price' %}">Price</a>
-                          <a class="dropdown-item" href="{% url 'product_sort' 'rating' %}">Rating</a>
-                          <a class="dropdown-item" href="{% url 'product_sort' 'category' %}">Category</a>
-                          <a class="dropdown-item" href="{% url 'all_products' %}">All</a>
-                      </div>
-                  </li>
-                  
-                  <!-- Individual Categories -->
-                  <li class="nav-item">
-                      <a class="nav-link text-blue" href="{% url 'category' 'kente' %}">Kente Cloth</a>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link text-blue" href="{% url 'category' 'gtp-authentic' %}">GTP Authentic Print</a>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link text-blue" href="{% url 'category' 'akosombo' %}">Akosombo Textile</a>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link text-blue" href="{% url 'deals' %}">Deals</a>
-                  </li>
-              </ul>
+                      <a class="dropdown-item" href="{% url 'product_sort' 'price' %}">Price</a>
+                      <a class="dropdown-item" href="{% url 'product_sort' 'rating' %}">Rating</a>
+                      <a class="dropdown-item" href="{% url 'product_sort' 'category' %}">Category</a>
+                      <a class="dropdown-item" href="{% url 'products' %}">All</a>
+            </div>
+              </li>
+            </ul>
           </div>
       </nav>
   </div>
 </div>
+
+
+{% comment %} <div class="collapse navbar-collapse" id="categories-nav">
+  <ul class="navbar-nav mx-auto"> {% endcomment %}
+      <!-- All Products Dropdown -->
+      
+      <!-- Individual Categories -->
+      {% comment %} <li class="nav-item">
+          <a class="nav-link text-blue" href="{% url 'category' 'kente' %}">Kente Cloth</a>
+      </li>
+      <li class="nav-item">
+          <a class="nav-link text-blue" href="{% url 'category' 'gtp-authentic' %}">GTP Authentic Print</a>
+      </li>
+      <li class="nav-item">
+          <a class="nav-link text-blue" href="{% url 'category' 'akosombo' %}">Akosombo Textile</a>
+      </li>
+      <li class="nav-item">
+          <a class="nav-link text-blue" href="{% url 'deals' %}">Deals</a>
+      </li>
+  </ul>
+</div> {% endcomment %}

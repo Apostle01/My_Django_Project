@@ -36,7 +36,6 @@
 <body class="d-flex flex-column min-vh-100">
     <header class="container-fluid">
         <div class="row d-flex justify-content-center align-items-center mt-3">
-            {% comment %} <a href="{% url 'profile' %}">Profile</a> {% endcomment %}
             <a href="{% url 'home' %}">Home</a>
             <img class="brand-logo" src="{% static 'images/white-kente.jpg' %}" alt="My_Django_Project" />
         </div>
@@ -49,13 +48,13 @@
                 </h4>
             </div>
         </div>
-          <!-- User Profile and Logout Links -->
-          <div class="row d-flex justify-content-end">
-            {% if user.is_authenticated %}
-                <a href="{% url 'user_profile' %}" class="btn btn-link">Profile</a>
-                <a href="{% url 'logout' %}" class="btn btn-link">Logout</a>
+        <!-- User Profile and Logout Links -->
+        <div class="row d-flex justify-content-end">
+            {% if request.user.is_authenticated %}
+                <a href="{% url 'account_logout' %}" class="dropdown-item text-blue">Sign Out</a>
             {% else %}
-                <a href="{% url 'account_login' %}" class="btn btn-link">Login</a>
+                <a href="{% url 'account_signup' %}" class="dropdown-item text-blue">Register</a>
+                <a href="{% url 'account_login' %}" class="dropdown-item text-blue">Sign In</a>
             {% endif %}
         </div>
     </header>
