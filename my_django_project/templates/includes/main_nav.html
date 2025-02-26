@@ -1,6 +1,6 @@
 <nav class="navbar row">
     <div class="col-12 d-lg-flex align-items-center py-1 py-lg-0">
-        
+
         <!-- Search bar -->
         <div class="col-12 col-lg-6 offset-lg-3 my-auto py-1 py-lg-0">
             <form method="GET" action="">
@@ -30,11 +30,11 @@
                             {% if request.user.is_superuser %}
                                 <a href="{% url 'product_management' %}" class="dropdown-item text-blue">Product Management</a>
                             {% endif %}
-                            <a href="{% url 'profile' %}" class="dropdown-item text-blue">My Profile</a>
-                            <a href="{% url 'logout' %}" class="dropdown-item text-blue">Sign Out</a>
+                            <!-- Removed 'account_profile' link -->
+                            <a href="{% url 'account_logout' %}" class="dropdown-item text-blue">Sign Out</a>
                         {% else %}
-                            <a href="{% url 'register' %}" class="dropdown-item text-blue">Register</a>
-                            <a href="{% url 'login' %}" class="dropdown-item text-blue">Sign In</a>
+                            <a href="{% url 'account_signup' %}" class="dropdown-item text-blue">Register</a>
+                            <a href="{% url 'account_login' %}" class="dropdown-item text-blue">Sign In</a>
                         {% endif %}
                     </div>
                 </li>

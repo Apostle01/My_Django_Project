@@ -18,28 +18,18 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-from . import views
-from bag import views as bag_views
-from django.contrib.auth import views as auth_views
-from accounts import views as accounts_views  # Profile view is here
+from products import views  # Import the views from your 'products' app
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('home.urls')),
-    path('bag/', bag_views.bag_view, name='bag'),
-
-    path('accounts/', include('allauth.urls')),  # Using allauth for accounts
+    path('', include('home.urls'), name='home'),  # Home app
+    path('bag/', include('bag.urls'), name='bag'),  # Bag app
+    path('accounts/', include('allauth.urls')),  # Allauth URLs for user accounts
     path('cloth/', include('cloth.urls')),  # Cloth app URLs
-    
-    # Profile view from accounts app
-    path('profile/', accounts_views.profile, name='user_profile'),
-    path('logout/', auth_views.LogoutView.as_view(), name='logout'),  # Logout view
-]
-
-# Static files in development
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
+    path('products/', include('products.urls'), name='products'),  # Products app
+    path('all-products/', views.all_products, name='all_products'),  # Use 'all_products' view from 'products' app
+    path('category/', include('category.urls')),  # Category app URLs
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
 

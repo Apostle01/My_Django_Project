@@ -196,3 +196,8 @@ def add_review(request, product_id):
     }
 
     return render(request, 'products/add_review.html', context)
+
+def product_list(request):
+    # Fetch all products from the database
+    products = Product.objects.all()
+    return render(request, 'products/product_list.html', {'products': products})
