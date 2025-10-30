@@ -19,17 +19,22 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from products import views  # Import the views from your 'products' app
+from home import views as home_views
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('home.urls'), name='home'),  # Home app
+    path('', include('home.urls')), 
+    path('', home_views.index, name='home'),
     path('bag/', include('bag.urls'), name='bag'),  # Bag app
     path('accounts/', include('allauth.urls')),  # Allauth URLs for user accounts
     path('cloth/', include('cloth.urls')),  # Cloth app URLs
-    path('products/', include('products.urls'), name='products'),  # Products app
-    path('all-products/', views.all_products, name='all_products'),  # Use 'all_products' view from 'products' app
+    path('products/', include('products.urls')),   # Products app
     path('category/', include('category.urls')),  # Category app URLs
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    path('cart/', include('cart.urls')),
+] 
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
 
