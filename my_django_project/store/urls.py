@@ -2,5 +2,5 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('store/', views.store_view, name='store'),  # Make sure this exists
+    path("store/", views.store, name="store"),  # Make sure this exists
 ]

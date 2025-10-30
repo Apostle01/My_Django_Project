@@ -19,17 +19,18 @@
                       <a class="nav-link" href="{% url 'category' 'akosombo' %}">Akosombo Textile</a>
                   </li>
                   <li class="nav-item">
-                      <a class="nav-link" href="{% url 'deals' %}">Deals</a>
+                      <a class="nav-link" href="{% url 'category' 'deals' %}">Deals</a>
                   </li>
+             </ul>
                   <li class="nav-item dropdown">
                       <a href="#" class="nav-link mr-5 text-blue" id="all-products-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              All Products
+                        All Products
                       </a>
                       <div class="dropdown-menu border-0" aria-labelledby="all-products-link">
                       <a class="dropdown-item" href="{% url 'product_sort' 'price' %}">Price</a>
                       <a class="dropdown-item" href="{% url 'product_sort' 'rating' %}">Rating</a>
                       <a class="dropdown-item" href="{% url 'product_sort' 'category' %}">Category</a>
-                      <a class="dropdown-item" href="{% url 'products' %}">All</a>
+                      <a class="dropdown-item" href="{% url 'all_products' %}">all_products</a>
             </div>
               </li>
             </ul>

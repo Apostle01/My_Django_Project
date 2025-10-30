@@ -6,63 +6,59 @@ from django.contrib.auth.decorators import login_required
 from .models import Product, Category, Review
 from .forms import ProductForm, ReviewForm
 
-
 def all_products(request):
-    """ A view to show all products,
-     including sorting and search queries
-    """
     products = Product.objects.all()
-    query = None
-    categories = None
-    sort = None
-    direction = None
+    return render(request, 'products/all_products.html', {'products': products})
+# def all_products(request):
+#     """ A view to show all products, with sorting and search queries """
+#     products = Product.objects.all()
+#     query = None
+#     categories = None
+#     sort = None
+#     direction = None
 
-    if request.GET:
+#     if request.GET:
+#         if 'sort' in request.GET:
+#             sortkey = request.GET['sort']
+#             sort = sortkey
+#             if sortkey == 'name':
+#                 sortkey = 'lower_name'
+#                 products = products.annotate(lower_name=Lower('name'))
+#             if sortkey == 'category':
+#                 sortkey = 'category__name'
+#             if 'direction' in request.GET:
+#                 direction = request.GET['direction']
+#                 if direction == 'desc':
+#                     sortkey = f'-{sortkey}'
+#             products = products.order_by(sortkey)
 
-        if 'sort' in request.GET:
-            sortkey = request.GET['sort']
-            sort = sortkey
-            if sortkey == 'name':
-                sortkey = 'lower_name'
-                products = products.annotate(lower_name=Lower('name'))
-            if sortkey == 'category':
-                sortkey = 'category__name'
-            if 'direction' in request.GET:
-                direction = request.GET['direction']
-                if direction == 'desc':
-                    sortkey = f'-{sortkey}'
-            products = products.order_by(sortkey)
+#         if 'category' in request.GET:
+#             categories = request.GET['category'].split(',')
+#             products = products.filter(category__name__in=categories)
+#             categories = Category.objects.filter(name__in=categories)
 
-        if 'category' in request.GET:
-            categories = request.GET['category'].split(',')
-            products = products.filter(category__name__in=categories)
-            categories = Category.objects.filter(name__in=categories)
+#         if 'q' in request.GET:
+#             query = request.GET['q']
+#             if not query:
+#                 messages.error(request, "You didn't add any search criteria")
+#                 return redirect(reverse('all_products'))
 
-        if 'q' in request.GET:
-            query = request.GET['q']
-            if not query:
-                messages.error(request, "You didn't add any search criteria")
-                return redirect(reverse('products'))
+#             queries = Q(name__icontains=query) | Q(description__icontains=query)
+#             products = products.filter(queries)
 
-            queries = Q(name__icontains=query) | Q(
-                        description__icontains=query)
-            products = products.filter(queries)
+#     current_sorting = f'{sort}_{direction}' if sort else ''
 
-    current_sorting = f'{sort}_{direction}'
-
-    context = {
-        'products': products,
-        'search_term': query,
-        'current_categories': categories,
-        'current_sorting': current_sorting,
-    }
-
-    return render(request, 'products/products.html', context)
+#     context = {
+#         'products': products,
+#         'search_term': query,
+#         'current_categories': categories,
+#         'current_sorting': current_sorting,
+#     }
+#     return render(request, 'products/all_products.html', {'products': products})
 
 
 def product_detail(request, product_id):
-    """ A view to show a products details
-    """
+    """ A view to show product details """
     product = get_object_or_404(Product, pk=product_id)
     reviews = product.reviews.all()
 
@@ -70,7 +66,6 @@ def product_detail(request, product_id):
         'product': product,
         'reviews': reviews
     }
-
     return render(request, 'products/product_detail.html', context)
 
 
@@ -88,19 +83,11 @@ def add_product(request):
             messages.success(request, 'Successfully added product!')
             return redirect(reverse('product_detail', args=[product.id]))
         else:
-            messages.error(
-                request,
-                'Failed to add product. Please ensure the form is valid.'
-                )
+            messages.error(request, 'Failed to add product. Please check the form.')
     else:
         form = ProductForm()
 
-    template = 'products/add_product.html'
-    context = {
-        'form': form,
-    }
-
-    return render(request, template, context)
+    return render(request, 'products/add_product.html', {'form': form})
 
 
 @login_required
@@ -118,21 +105,12 @@ def edit_product(request, product_id):
             messages.success(request, 'Successfully updated product!')
             return redirect(reverse('product_detail', args=[product.id]))
         else:
-            messages.error(
-                request,
-                'Failed to update product. Please ensure the form is valid.'
-                )
+            messages.error(request, 'Failed to update product. Please check the form.')
     else:
         form = ProductForm(instance=product)
         messages.info(request, f'You are editing {product.name}')
 
-    template = 'products/edit_product.html'
-    context = {
-        'form': form,
-        'product': product,
-    }
-
-    return render(request, template, context)
+    return render(request, 'products/edit_product.html', {'form': form, 'product': product})
 
 
 @login_required
@@ -145,34 +123,21 @@ def delete_product(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
     product.delete()
     messages.success(request, 'Product deleted!')
-    return redirect(reverse('products'))
+    return redirect(reverse('all_products'))
 
 
 def add_review(request, product_id):
-    """
-    Handle adding a review for a product, ensuring the user is authenticated
-    and has not already submitted a review for the same product.
-    """
+    """ Add a review for a product """
     product = get_object_or_404(Product, pk=product_id)
 
-    # Check if the user has already submitted a review for this product
-    existing_review = Review.objects.filter(product=product,
-                                            user=request.user).first()
-
-    # Prevents the same user leaving multiple reviews
+    # Prevent multiple reviews by the same user
+    existing_review = Review.objects.filter(product=product, user=request.user).first()
     if existing_review:
-        messages.error(
-            request,
-            'You have already submitted a review for this product.'
-        )
+        messages.error(request, 'You have already submitted a review for this product.')
         return redirect(reverse('product_detail', args=[product_id]))
 
-    if not request.user.is_authenticated:        
-        messages.warning(
-            request,
-            'You must be logged in to leave a review.'
-        )
-
+    if not request.user.is_authenticated:
+        messages.warning(request, 'You must be logged in to leave a review.')
         return redirect(reverse('product_detail', args=[product_id]))
 
     if request.method == 'POST':
@@ -182,22 +147,9 @@ def add_review(request, product_id):
             review.product = product
             review.user = request.user
             review.save()
-            messages.success(
-                request,
-                'Thank you for submitting a review'
-                )
+            messages.success(request, 'Thank you for submitting a review!')
             return redirect(reverse('product_detail', args=[product_id]))
     else:
         form = ReviewForm()
 
-    context = {
-        'product': product,
-        'form': form
-    }
-
-    return render(request, 'products/add_review.html', context)
-
-def product_list(request):
-    # Fetch all products from the database
-    products = Product.objects.all()
-    return render(request, 'products/product_list.html', {'products': products})
+    return render(request, 'products/add_review.html', {'product': product, 'form': form})
