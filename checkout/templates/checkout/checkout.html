@@ -1,0 +1,175 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load bag_tools %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+  <h2 class="mb-4">Checkout</h2>
+
+  <div class="row">
+    <div class="col-lg-6 order-lg-last mb-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Order Summary ({{ product_count }})</h5>
+          <hr>
+          {% for item in bag_items %}
+            <div class="d-flex align-items-center mb-2">
+              <div class="mr-2">
+                {% if item.product.image %}
+                  <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" width="64">
+                {% else %}
+                  <img src="{{ MEDIA_URL }}noimage.png" alt="{{ item.product.name }}" width="64">
+                {% endif %}
+              </div>
+              <div class="flex-grow-1">
+                <strong>{{ item.product.name }}</strong><br>
+                <small class="text-muted">Qty: {{ item.quantity }} {% if item.size %}| Size: {{ item.size|upper }}{% endif %}</small>
+              </div>
+              <div class="ml-3">
+                ₵{{ item.product.price|calc_subtotal:item.quantity }}
+              </div>
+            </div>
+          {% endfor %}
+          <hr>
+          <div class="d-flex justify-content-between">
+            <span>Total</span><span>₵{{ total|floatformat:2 }}</span>
+          </div>
+          <div class="d-flex justify-content-between">
+            <span>Delivery</span><span>₵{{ delivery|floatformat:2 }}</span>
+          </div>
+          <div class="d-flex justify-content-between font-weight-bold">
+            <span>Grand Total</span><span>₵{{ grand_total|floatformat:2 }}</span>
+          </div>
+
+          {% if free_delivery_delta > 0 %}
+            <p class="text-info mt-2">Spend ₵{{ free_delivery_delta|floatformat:2 }} more to get free delivery!</p>
+          {% else %}
+            <p class="text-success mt-2">You’ve qualified for free delivery 🎉</p>
+          {% endif %}
+
+          <div class="mt-3 d-flex justify-content-between">
+            <a href="{% url 'all_products' %}" class="btn btn-outline-secondary">Continue Shopping</a>
+            <a href="{% url 'view_bag' %}" class="btn btn-outline-dark">Edit Bag</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Delivery & Payment</h5>
+          <form action="{% url 'checkout' %}" method="POST" id="payment-form">
+            {% csrf_token %}
+            {{ order_form|crispy }}
+            <div class="mb-3">
+              <label for="card-element" class="font-weight-bold">Credit or Debit Card</label>
+              <div id="card-element" class="form-control p-2">
+              <!-- Stripe Element will be inserted here -->
+            </div>
+            <div id="card-errors" role="alert" class="text-danger mt-2"></div>
+          </div>
+
+          <input type="hidden" name="client_secret" value="{{ client_secret }}">
+          <button type="submit" class="btn btn-success btn-block mt-3">
+            <i class="fas fa-lock mr-2"></i>Pay ${{ grand_total|floatformat:2 }}
+          </button>
+        </form>
+
+        </div>
+      </div>
+      <small class="form-text text-muted mt-2">Payments processed via Stripe. Make sure STRIPE keys are set in settings or environment.</small>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+{{ stripe_public_key|json_script:"id_stripe_public_key" }}
+{{ client_secret|json_script:"id_client_secret" }}
+<script src="https://js.stripe.com/v3/"></script>
+<script src="{% static 'checkout/js/stripe_elements.js' %}"></script>
+{% endblock %}
+
+
+{% comment %} {% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load bag_tools %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <h2 class="mb-4">Checkout</h2>
+
+  <div class="row">
+    <div class="col-lg-6 order-lg-last">
+      <h5>Order Summary ({{ product_count }})</h5>
+      <hr>
+      {% for item in bag_items %}
+      <div class="d-flex mb-2">
+        <div class="flex-shrink-0">
+          {% if item.product.image %}
+          <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" width="60">
+          {% else %}
+          <img src="{{ MEDIA_URL }}noimage.png" alt="{{ item.product.name }}" width="60">
+          {% endif %}
+        </div>
+        <div class="flex-grow-1 ms-2">
+          <p class="mb-0">{{ item.product.name }}</p>
+          <small>Qty: {{ item.quantity }} {% if item.size %}| Size: {{ item.size|upper }}{% endif %}</small>
+        </div>
+        <div class="ms-auto">${{ item.product.price|calc_subtotal:item.quantity }}</div>
+      </div>
+      {% endfor %}
+      <hr>
+      <div class="d-flex justify-content-between">
+        <span>Total:</span> <span>${{ total|floatformat:2 }}</span>
+      </div>
+      <div class="d-flex justify-content-between">
+        <span>Delivery:</span> <span>${{ delivery|floatformat:2 }}</span>
+      </div>
+      <div class="d-flex justify-content-between fw-bold">
+        <span>Grand Total:</span> <span>${{ grand_total|floatformat:2 }}</span>
+      </div>
+
+      {% if free_delivery_delta > 0 %}
+      <p class="text-info mt-2">Spend ${{ free_delivery_delta|floatformat:2 }} more to get free delivery!</p>
+      {% else %}
+      <p class="text-success mt-2">You’ve qualified for free delivery 🎉</p>
+      {% endif %}
+
+      <div class="mt-3 d-flex justify-content-between">
+        <a href="{% url 'all_products' %}" class="btn btn-outline-secondary">Continue Shopping</a>
+        <a href="{% url 'checkout' %}" class="btn btn-primary">Secure Checkout</a>
+      </div>
+    </div>
+
+    <div class="col-lg-6">
+      <form action="{% url 'checkout' %}" method="POST" id="payment-form">
+        {% csrf_token %}
+        {{ order_form|crispy }}
+        <input type="hidden" name="client_secret" value="{{ client_secret }}">
+        <button type="submit" class="btn btn-dark mt-3 w-100">Complete Order - ${{ grand_total|floatformat:2 }}</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Stripe.js -->
+{% block postloadjs %}
+{{ block.super }}
+{{ stripe_public_key|json_script:"id_stripe_public_key" }}
+{{ client_secret|json_script:"id_client_secret" }}
+<script src="{% static 'checkout/js/stripe_elements.js' %}"></script>
+{% endblock %}
+{% endblock %} {% endcomment %}
