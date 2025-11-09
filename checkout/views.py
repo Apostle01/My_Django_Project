@@ -12,6 +12,7 @@ from profiles.forms import UserProfileForm
 from products.models import Product
 from .forms import OrderForm
 from .models import Order, OrderLineItem
+from bag.context_processors import bag_contents
 
 import stripe
 
@@ -121,7 +122,6 @@ def checkout(request):
     stripe_public_key = getattr(settings, "STRIPE_PUBLIC_KEY", "")
     stripe_secret_key = getattr(settings, "STRIPE_SECRET_KEY", "")
 
-    # Recompute bag / totals
     bag = request.session.get("bag", {})
     if not bag:
         messages.error(request, "There's nothing in your bag at the moment.")
@@ -136,12 +136,7 @@ def checkout(request):
     grand_total = bag_context["grand_total"]
     product_count = bag_context["product_count"]
 
-    # Save delivery (string) in session if you really want to keep it, but avoid using it as product id
-    # It's safer to store metadata separately - if you must:
-    request.session.setdefault("bag_meta", {})
-    request.session["bag_meta"]["delivery"] = str(delivery)
-
-    # POST handling: create Order and OrderLineItems
+    # Build order form
     if request.method == "POST":
         form_data = {
             "full_name": request.POST.get("full_name", ""),
@@ -165,7 +160,6 @@ def checkout(request):
             order.grand_total = grand_total
             order.save()
 
-            # create line items using the precomputed bag_items list
             for item in bag_items:
                 try:
                     if "size" in item:
@@ -182,16 +176,16 @@ def checkout(request):
                             quantity=item["quantity"],
                         )
                 except Exception:
-                    messages.error(request, "Problem adding an item to your order. Please contact support.")
+                    messages.error(request, "Problem adding an item to your order.")
                     order.delete()
                     return redirect(reverse("view_bag"))
 
             request.session["save_info"] = "save-info" in request.POST
             return redirect(reverse("checkout_success", args=[order.order_number]))
         else:
-            messages.error(request, "There was an error with your form. Please double check your information.")
+            messages.error(request, "There was an error with your form.")
     else:
-        # populate form for a logged-in user
+        # Pre-fill form for authenticated users
         if request.user.is_authenticated:
             try:
                 profile = UserProfile.objects.get(user=request.user)
@@ -211,8 +205,9 @@ def checkout(request):
         else:
             order_form = OrderForm()
 
-    # Create Stripe PaymentIntent (only if keys available)
+    # Create Stripe PaymentIntent safely
     intent = None
+    client_secret = ""
     try:
         if not stripe_secret_key:
             raise ValueError("Missing Stripe secret key.")
@@ -222,23 +217,22 @@ def checkout(request):
             amount=stripe_total,
             currency=getattr(settings, "STRIPE_CURRENCY", "usd"),
         )
+        client_secret = intent.client_secret
     except Exception as e:
-        # If Stripe fails, show a warning but still render the page so user can correct bag/form
-        messages.warning(request, f"Stripe error: {e}. Use admin to set valid keys.")
+        messages.warning(request, f"Stripe error: {e}. Check your Stripe settings.")
 
     context = {
-    'order_form': order_form,
-    'stripe_public_key': settings.STRIPE_PUBLIC_KEY,
-    'client_secret': intent.client_secret,
-    'bag_items': bag_items,
-    'total': total,
-    'delivery': delivery,
-    'grand_total': grand_total,
-    'free_delivery_delta': free_delivery_delta,
-    'product_count': product_count,
-}
+        "order_form": order_form,
+        "stripe_public_key": stripe_public_key,
+        "client_secret": client_secret,
+        "bag_items": bag_items,
+        "total": total,
+        "delivery": delivery,
+        "grand_total": grand_total,
+        "free_delivery_delta": free_delivery_delta,
+        "product_count": product_count,
+    }
     return render(request, "checkout/checkout.html", context)
-
 
 # from decimal import Decimal
 # from django.shortcuts import render, redirect, reverse, get_object_or_404
