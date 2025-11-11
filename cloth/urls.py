@@ -20,7 +20,8 @@ urlpatterns = [
     path('', views.cloth_list, name='cloth_list'),  # List view for all cloth
     path('<int:cloth_id>/', views.cloth_detail, name='cloth_detail'),  # Cloth detail view
     path('sort/<str:criterion>/', views.product_sort, name='product_sort'),  # Sorting products
-    path('category/<str:category_name>/', views.category_view, name='category'),  # Category filter
+    path('category/<slug:slug>/', views.category_view, name='category'),
+    # path('category/<str:category_name>/', views.category_view, name='category'),  # Category filter
     path('deals/', views.deals_view, name='deals'),  # Deals section
 ]
 

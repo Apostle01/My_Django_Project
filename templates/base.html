@@ -54,11 +54,18 @@
           <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
 
           <!-- Categories -->
-          <li class="nav-item"><a class="nav-link" href="{% url 'category' 'kente' %}">Kente</a></li>
-          <li class="nav-item"><a class="nav-link" href="{% url 'category' 'gtp authentic print' %}">GTP Authentic Print</a></li>
+          {% if categories %}
+            {% for category in categories %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'category' category.slug %}">{{ category.name }}</a>
+              </li>
+            {% endfor %}
+          {% endif %}
+
+          {% comment %} <li class="nav-item"><a class="nav-link" href="{% url 'category' 'gtp authentic print' %}">GTP Authentic Print</a></li>
           <li class="nav-item"><a class="nav-link" href="{% url 'category' 'akosombo textile' %}">Akosombo Textile</a></li>
           <li class="nav-item"><a class="nav-link" href="{% url 'category' 'deals' %}">Deals</a></li>
-        </ul>
+        </ul> {% endcomment %}
 
         <!-- Right Side -->
         <ul class="navbar-nav ms-auto">

@@ -7,6 +7,11 @@ from django.http import HttpResponse
 from django.urls import reverse
 from products.models import Product
 from django.contrib import messages
+from products.models import Category
+
+def categories_context(request):
+    return {'categories': Category.objects.all()}
+
 
 def view_bag(request):
     """ View to show the contents of the shoppers bag """

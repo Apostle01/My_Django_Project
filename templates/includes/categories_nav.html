@@ -9,19 +9,14 @@
                   <li class="nav-item">
                       <a class="nav-link" href="{% url 'all_products' %}">All Products</a>
                   </li>
-                  <li class="nav-item">
-                      <a class="nav-link" href="{% url 'category' 'kente' %}">Kente Cloth</a>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link" href="{% url 'category' 'gtp-authentic' %}">GTP Authentic Print</a>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link" href="{% url 'category' 'akosombo' %}">Akosombo Textile</a>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link" href="{% url 'category' 'deals' %}">Deals</a>
-                  </li>
-             </ul>
+                  {% if categories %}
+                    {% for category in categories %}
+                        <li class="nav-item">
+                        <a class="nav-link" href="{% url 'category' category.slug %}">{{ category.name }}</a>
+                        </li>
+                    {% endfor %}
+                  {% endif %}
+
                   <li class="nav-item dropdown">
                       <a href="#" class="nav-link mr-5 text-blue" id="all-products-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         All Products
@@ -38,24 +33,3 @@
       </nav>
   </div>
 </div>
-
-
-{% comment %} <div class="collapse navbar-collapse" id="categories-nav">
-  <ul class="navbar-nav mx-auto"> {% endcomment %}
-      <!-- All Products Dropdown -->
-      
-      <!-- Individual Categories -->
-      {% comment %} <li class="nav-item">
-          <a class="nav-link text-blue" href="{% url 'category' 'kente' %}">Kente Cloth</a>
-      </li>
-      <li class="nav-item">
-          <a class="nav-link text-blue" href="{% url 'category' 'gtp-authentic' %}">GTP Authentic Print</a>
-      </li>
-      <li class="nav-item">
-          <a class="nav-link text-blue" href="{% url 'category' 'akosombo' %}">Akosombo Textile</a>
-      </li>
-      <li class="nav-item">
-          <a class="nav-link text-blue" href="{% url 'deals' %}">Deals</a>
-      </li>
-  </ul>
-</div> {% endcomment %}

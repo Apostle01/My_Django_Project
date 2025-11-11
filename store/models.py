@@ -1,10 +1,8 @@
 from django.db import models
 from category.models import Category
 
-# Create your models here.
-
 class Product(models.Model):
-    product_name = models.CharField(max_length=200, unique=True)
+    name = models.CharField(max_length=200, unique=True)
     slug         = models.SlugField(max_length=200, unique=True)
     description  = models.TextField(max_length=200, unique=True)
     price        = models.IntegerField()
@@ -16,4 +14,4 @@ class Product(models.Model):
     modified_date= models.DateTimeField(auto_now=True)
     
     def __str__(self):
-        return self.product_name
+        return self.name
