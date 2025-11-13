@@ -2,9 +2,10 @@ from django.shortcuts import render, reverse, redirect, get_object_or_404
 from django.contrib import messages
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
-from .models import Product, Category, Review
+from .models import Review
 from .forms import ProductForm, ReviewForm
 from category.models import Category
+from .models import Product
 
 def category(request, foo):
     foo = foo.replace('-', ' ')

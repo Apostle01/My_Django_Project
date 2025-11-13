@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.text import slugify
-# from products.models import Category  # Ensure proper import for Category
+from django.utils import timezone
+from category.models import Category
 
 class Category(models.Model):
     name = models.CharField(max_length=100, unique=True)
@@ -24,14 +25,18 @@ class Cloth(models.Model):
     description = models.TextField(blank=True, null=True)
     price = models.DecimalField(max_digits=8, decimal_places=2)
     image = models.ImageField(upload_to="cloth_images/", blank=True, null=True)
-    # created_at = models.DateTimeField(auto_now_add=True)
-    # updated_on = models.DateTimeField(auto_now=True)
+    created_at = models.DateTimeField(default=timezone.now)
+    updated_on = models.DateTimeField(auto_now=True)
     slug = models.SlugField(max_length=200, unique=True, blank=True)
 
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.name)
         super().save(*args, **kwargs)
+
+    class Meta:
+        verbose_name_plural = "Cloths"
+        # ordering = ['-created_on']
 
     def __str__(self):
         return self.name        

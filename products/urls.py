@@ -1,15 +1,11 @@
 # products/urls.py
-
 from django.urls import path
-# from cart.views import add_to_cart  # Import your add_to_cart view
 from . import views
 
 urlpatterns = [
     # All products page (main listing)
     path('', views.all_products, name='all_products'),
 
-    # Product detail
-    # path('', views.all_products, name='all_products'),
     path('<int:product_id>/', views.product_detail, name='product_detail'),
 
     # Product management

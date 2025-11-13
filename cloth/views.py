@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Category
+from category.models import Category
 from products.models import Product
 
 

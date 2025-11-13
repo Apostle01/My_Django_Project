@@ -7,7 +7,7 @@ from django.http import HttpResponse
 from django.urls import reverse
 from products.models import Product
 from django.contrib import messages
-from products.models import Category
+from category.models import Category
 
 def categories_context(request):
     return {'categories': Category.objects.all()}

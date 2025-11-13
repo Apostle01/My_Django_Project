@@ -1,12 +1,13 @@
 from django import forms
 from .models import Product, Review
+# from store.models import Product
 
 class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
-        fields = ['category', 'sku', 'name', 'description', 'price', 'rating', 'image_url', 'image']
+        fields = ['category', 'name', 'description', 'price', 'image']
 
 class ReviewForm(forms.ModelForm):
     class Meta:
         model = Review
-        fields = ['product', 'user', 'rating', 'review']
+        fields = ['rating', 'review']

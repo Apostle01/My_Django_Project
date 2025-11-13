@@ -1,5 +1,6 @@
 from django.db import models
 from category.models import Category
+from django.utils.text import slugify
 
 class Product(models.Model):
     name = models.CharField(max_length=200, unique=True)
@@ -13,5 +14,11 @@ class Product(models.Model):
     created_date = models.DateTimeField(auto_now_add=True)
     modified_date= models.DateTimeField(auto_now=True)
     
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.name)
+        super().save(*args, **kwargs)
+    # class Meta:
+    #     ordering = ['-created_at']
     def __str__(self):
         return self.name

@@ -1,5 +1,7 @@
 from django.shortcuts import render, get_object_or_404
-from products.models import Category, Product
+from category.models import Category
+from store.models import Product
+
 
 def category_view(request, foo):
     category = get_object_or_404(Category, name__iexact=foo)
