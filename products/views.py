@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from .models import Review
 from .forms import ProductForm, ReviewForm
 from category.models import Category
-from .models import Product
+from store.models import Product
 
 def category(request, foo):
     foo = foo.replace('-', ' ')
