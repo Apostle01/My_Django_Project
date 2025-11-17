@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+  <h2 class="text-center mb-4">Shop by Category</h2>
+
+  <div class="row">
+    {% for category in categories %}
+      <div class="col-md-4 mb-3">
+        <div class="card shadow-sm text-center p-3">
+          <h5 class="mb-2">{{ category.name }}</h5>
+          <a href="{% url 'category' category.slug %}" class="btn btn-primary">
+            View Products
+          </a>
+        </div>
+      </div>
+    {% empty %}
+      <p class="text-center">No categories found.</p>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

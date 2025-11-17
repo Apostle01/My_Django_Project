@@ -1,37 +1,33 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block page_header %}
-    {% comment %} <div class="hero-image d-flex align-items-center justify-content-center text-center">
-        <div class="overlay"></div>
-        <div class="hero-text">
-            <h1 class="display-4 text-white">My_Django_Project</h1>
-            <p class="lead text-white">Ghanaian Cloth Haven</p>
-            <a href="{% url 'all_products' %}" class="btn btn-primary btn-lg">Shop Now</a> 
-        </div>
-    </div>  {% endcomment %}
-
-    <div class="container header-container">
-        <div class="row">
-            <div class="col"></div>
-        </div>
-    </div>
+<!-- ⭐ SECOND STRUCTURAL FIX: HOMEPAGE HERO -->
+{% block hero %}
+<section class="hero-section d-flex align-items-center justify-content-center text-center">
+  <div class="container hero-text">
+    <h1 class="logo-font">Welcome to My Shop</h1>
+    <p class="lead">Authentic Ghanaian Kente and Fabrics</p>
+    <a href="{% url 'all_products' %}" class="shop-now-button mt-3">Shop Now</a>
+  </div>
+</section>
 {% endblock %}
 
 {% block content %}
-    <div class="container h-100">
-        <div class="row h-100">
-            <div class="col-7 col-md-6 my-auto">
-                <h1 class="display-4 logo-font text-black">
-                    Ghanaian Cloth Haven
-                </h1>
-                <div class="my-5">
-                    <h4>
-                        <a href="{% url 'all_products' %}" class="shop-now-button btn btn-lg rounded-0 text-uppercase py-3">Shop Now</a>
-                        
-                    </h4>
-                </div> 
+<div class="container mt-5">
+    <div class="row">
+        {% for product in products %}
+        <div class="col-md-3 col-sm-6 mb-4">
+            <div class="card h-100">
+                <a href="{% url 'product_detail' product.id %}">
+                    <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
+                </a>
+                <div class="card-body text-center">
+                    <h5>{{ product.name }}</h5>
+                    <p>₵{{ product.price }}</p>
+                </div>
             </div>
         </div>
+        {% endfor %}
     </div>
-{% endblock %} 
+</div>
+{% endblock %}

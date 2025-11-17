@@ -7,14 +7,14 @@ from .forms import ProductForm, ReviewForm
 from category.models import Category
 from store.models import Product
 
-def category(request, foo):
-    foo = foo.replace('-', ' ')
-    category = get_object_or_404(Category, name__iexact=foo)
-    products = Product.objects.filter(category=category)
-    return render(request, 'products/category.html', {
-        'category': category,
-        'products': products,
-    })
+# def category(request, foo):
+#     foo = foo.replace('-', ' ')
+#     category = get_object_or_404(Category, name__iexact=foo)
+#     products = Product.objects.filter(category=category)
+#     return render(request, 'products/category.html', {
+#         'category': category,
+#         'products': products,
+#     })
 
 def all_products(request):
     """Display all products, with optional search query."""

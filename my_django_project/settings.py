@@ -12,7 +12,12 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 import os
 from pathlib import Path
-from dotenv import load_dotenv
+try:
+    from dotenv import load_dotenv
+except ImportError:
+    def load_dotenv(path=None):
+        # no-op fallback when python-dotenv is not installed
+        return False
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -49,7 +54,6 @@ INSTALLED_APPS = [
     # Optional -- requires install using `django-allauth[socialaccount]`.
     'allauth.socialaccount',
     'home',
-    'cloth',
     'bag',
     'products',
     'category',
@@ -94,8 +98,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'bag.context_processors.bag_contents',
-                # 'cart.context_processors.cart_contents',
-            ],
+                'store.context_processors.categories_processor',            ],
         },
     },
 ]

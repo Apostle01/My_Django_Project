@@ -12,6 +12,15 @@
     </div>
   </form>
 
+  <!-- Category Shortcuts -->
+  <div class="mb-4 text-center">
+    {% for category in categories %}
+      <a href="{% url 'category' category.slug %}" class="btn btn-outline-primary btn-sm m-1">
+        {{ category.name }}
+      </a>
+    {% endfor %}
+  </div>
+
   <div class="row">
     {% for product in products %}
       <div class="col-md-3 col-sm-6 mb-4">

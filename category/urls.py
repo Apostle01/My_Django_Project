@@ -1,7 +1,7 @@
-# category/urls.py
 from django.urls import path
-from . import views  # Import views from the current package
+from . import views
 
 urlpatterns = [
-    path('<slug:category_name>/', views.category_view, name='category'),  # Now 'views' is defined
+    path("", views.category_list, name="category_list"),
+    path("<slug:slug>/", views.category_view, name="category"),
 ]

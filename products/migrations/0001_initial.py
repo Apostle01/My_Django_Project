@@ -10,8 +10,8 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('cloth', '0001_initial'),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
+         ('category', '0001_initial'),
     ]
 
     operations = [
@@ -27,9 +27,18 @@ class Migration(migrations.Migration):
                 ('image_url', models.URLField(blank=True, max_length=1024, null=True)),
                 ('image', models.ImageField(blank=True, null=True, upload_to='products/')),
                 ('slug', models.SlugField(blank=True, max_length=255, null=True, unique=True)),
-                ('category', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='products', to='cloth.category')),
+
+                # FIXED: now points to category.Category correctly
+                ('category', models.ForeignKey(
+                    blank=True,
+                    null=True,
+                    on_delete=django.db.models.deletion.CASCADE,
+                    related_name='products',
+                    to='category.category'
+                )),
             ],
         ),
+
         migrations.CreateModel(
             name='Review',
             fields=[
@@ -37,8 +46,15 @@ class Migration(migrations.Migration):
                 ('rating', models.DecimalField(decimal_places=1, max_digits=2)),
                 ('review', models.TextField()),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('product', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='reviews', to='products.product')),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                ('product', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE,
+                    related_name='reviews',
+                    to='products.product'
+                )),
+                ('user', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE,
+                    to=settings.AUTH_USER_MODEL
+                )),
             ],
         ),
     ]
