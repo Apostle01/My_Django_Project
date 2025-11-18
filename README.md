@@ -2,6 +2,8 @@
 
 A modern Django-based web application designed with clean architecture, reusable components, and a fully functional shopping workflow. The project includes product browsing, category filtering, a shopping bag system, and a checkout workflow with integrated payment support.
 
+https://apostle01.github.io/My_Django_Project/
+
 ---
 
 ## 🚀 Features
