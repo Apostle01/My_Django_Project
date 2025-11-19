@@ -33,10 +33,12 @@ load_dotenv(os.path.join(BASE_DIR, '.env'))
 SECRET_KEY = 'django-insecure-2cpy(_c0spb00r7_*eqb@6+peu5i4&5p0%q!*3&lmf6+r(yu-^'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv("DEBUG", "False") == "True"
 
-ALLOWED_HOSTS = ['mydjangoproject-production.up.railway.app', 'http://mydjangoproject-production.up.railway.app']
-CSRF_TRUSTED_ORIGINS = ['mydjangoproject-production.up.railway.app', 'http://mydjangoproject-production.up.railway.app]
+ALLOWED_HOSTS = ['mydjangoproject-production.up.railway.app']
+CSRF_TRUSTED_ORIGINS = CSRF_TRUSTED_ORIGINS = [
+    'https://mydjangoproject-production.up.railway.app',
+]
 
 
 # Application definition
@@ -75,6 +77,7 @@ CRISPY_TEMPLATE_PACK = "bootstrap4"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # must be right below SecurityMiddleware
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -82,7 +85,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'allauth.account.middleware.AccountMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'my_django_project.urls'
@@ -144,7 +146,7 @@ DATABASES = {
         # 'NAME': os.path.join(BASE_DIR, os.getenv('DB_NAME', 'db.sqlite3')),
         'NAME': os.getenv('PGDATABASE', 'railway'),
         'USER': os.getenv('PGUSER', 'postgres'),
-        'PASSWORD': os.environ.get('PGPASSWORD'),
+        'PASSWORD': os.getenv('PGPASSWORD'),
         'HOST': os.getenv('PGHOST', 'switchback.proxy.rlwy.net'),
         'PORT': os.getenv('PGPORT', '50791'),
     }
