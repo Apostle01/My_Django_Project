@@ -30,12 +30,13 @@ load_dotenv(os.path.join(BASE_DIR, '.env'))
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-2cpy(_c0spb00r7_*eqb@6+peu5i4&5p0%q!*3&lmf6+r(yu-^'
+SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv("DEBUG", "False") == "True"
 
-ALLOWED_HOSTS = ["mydjangoproject-production.up.railway.app"]
+ALLOWED_HOSTS = ["localhost",
+    "127.0.0.1", "mydjangoproject-production.up.railway.app"]
 CSRF_TRUSTED_ORIGINS = [
     "https://mydjangoproject-production.up.railway.app",
 ]
@@ -206,3 +207,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY', '')
 STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY', '')
+
+PORT = os.getenv("PORT", "8000")
