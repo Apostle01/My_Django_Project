@@ -35,10 +35,9 @@ SECRET_KEY = 'django-insecure-2cpy(_c0spb00r7_*eqb@6+peu5i4&5p0%q!*3&lmf6+r(yu-^
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv("DEBUG", "False") == "True"
 
-ALLOWED_HOSTS = ["mydjangoproject-production.up.railway.app", "*"]
+ALLOWED_HOSTS = ["mydjangoproject-production.up.railway.app"]
 CSRF_TRUSTED_ORIGINS = [
     "https://mydjangoproject-production.up.railway.app",
-    "http://mydjangoproject-production.up.railway.app"
 ]
 
 
