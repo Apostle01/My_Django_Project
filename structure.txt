@@ -1,118 +1,37 @@
 my_django_project/
 │
 ├── manage.py
-├── db.sqlite3
-├── requirements.txt
-│
-├── my_django_project/          ← Main project package (formerly feyden)
+├── my_django_project/
 │   ├── __init__.py
-│   ├── asgi.py
 │   ├── settings.py
 │   ├── urls.py
-│   └── wsgi.py
+│   ├── wsgi.py
+│   └── asgi.py
 │
-├── accounts/
-│   ├── admin.py
-│   ├── apps.py
-│   ├── models.py
-│   ├── urls.py
-│   ├── views.py
+├── apps/
 │   ├── __init__.py
-│   └── templates/accounts/
-│
-├── bag/
-│   ├── admin.py
-│   ├── apps.py
-│   ├── models.py
-│   ├── urls.py
-│   ├── views.py
-│   ├── __init__.py
-│   └── templates/bag/
-│
-├── cart/
-│   ├── admin.py
-│   ├── apps.py
-│   ├── cart.py
-│   ├── urls.py
-│   ├── views.py
-│   ├── __init__.py
-│   └── templates/cart/
-│
-├── category/
-│   ├── admin.py
-│   ├── apps.py
-│   ├── models.py
-│   ├── urls.py
-│   ├── views.py
-│   ├── __init__.py
-│   └── templates/category/
-│
-├── checkout/
-│   ├── admin.py
-│   ├── apps.py
-│   ├── models.py
-│   ├── urls.py
-│   ├── views.py
-│   ├── __init__.py
-│   └── templates/checkout/
-│
-├── cloth/
-│   ├── admin.py
-│   ├── apps.py
-│   ├── models.py
-│   ├── forms.py
-│   ├── urls.py
-│   ├── views.py
-│   ├── __init__.py
-│   └── templates/cloth/
-│
-├── home/
-│   ├── admin.py
-│   ├── apps.py
-│   ├── models.py
-│   ├── urls.py
-│   ├── views.py
-│   ├── __init__.py
-│   └── templates/home/
-│
-├── profiles/
-│   ├── admin.py
-│   ├── apps.py
-│   ├── models.py
-│   ├── urls.py
-│   ├── views.py
-│   ├── __init__.py
-│   └── templates/profiles/
-│
-├── products/
-│   ├── admin.py
-│   ├── apps.py
-│   ├── models.py
-│   ├── urls.py
-│   ├── views.py
-│   ├── __init__.py
-│   └── templates/products/
-│
-├── store/
-│   ├── admin.py
-│   ├── apps.py
-│   ├── models.py
-│   ├── urls.py
-│   ├── views.py
-│   ├── __init__.py
-│   └── templates/store/
+│   ├── app_one/
+│   │   ├── __init__.py
+│   │   ├── admin.py
+│   │   ├── apps.py
+│   │   ├── models.py
+│   │   ├── tests.py
+│   │   └── views.py
+│   │
+│   └── app_two/
+│       ├── __init__.py
+│       ├── admin.py
+│       ├── apps.py
+│       ├── models.py
+│       ├── tests.py
+│       └── views.py
 │
 ├── templates/
-│   ├── base.html
-│   ├── main_nav.html
-│   └── categories_nav.html
+│   └── base.html
 │
 ├── static/
 │   ├── css/
+│   ├── js/
 │   └── images/
 │
-├── media/
-│   ├── images/
-│   └── photos/
-│
-└── venv/   ← keep only one virtual environment, delete `.venv` and `env`
+└── requirements.txt
