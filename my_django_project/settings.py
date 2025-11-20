@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 import os
+import dj_database_url
 from pathlib import Path
 try:
     from dotenv import load_dotenv
@@ -35,9 +36,11 @@ SECRET_KEY = os.environ.get("SECRET_KEY", "dev-secret-key-12345")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv("DEBUG", "False") == "True"
 
-ALLOWED_HOSTS = ['127.0.0.1',
-    'localhost',
-    '.railway.app', "mydjangoproject-production.up.railway.app"]
+ALLOWED_HOSTS = [
+    "mydjangoproject-production.up.railway.app",
+    "localhost",
+    "127.0.0.1",
+    ]
 CSRF_TRUSTED_ORIGINS = [
     "https://mydjangoproject-production.up.railway.app",
 ]
@@ -141,18 +144,22 @@ AUTH_USER_MODEL = 'accounts.Account'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        # 'ENGINE': 'django.db.backends.sqlite3',
-        # 'NAME': os.path.join(BASE_DIR, os.getenv('DB_NAME', 'db.sqlite3')),
-        'ENGINE': 'django.db.backends.postgresql',
-        # 'NAME': os.path.join(BASE_DIR, os.getenv('DB_NAME', 'db.sqlite3')),
-        'NAME': os.getenv('PGDATABASE', 'railway'),
-        'USER': os.getenv('PGUSER', 'postgres'),
-        'PASSWORD': os.getenv('PGPASSWORD'),
-        'HOST': os.getenv('PGHOST', 'switchback.proxy.rlwy.net'),
-        'PORT': os.getenv('PGPORT', '50791'),
-    }
+    "default": dj_database_url.config(
+        default=os.getenv("DATABASE_URL"),
+        conn_max_age=600,
+        ssl_require=True
+    )
 }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': os.getenv('PGDATABASE', 'railway'),
+#         'USER': os.getenv('PGUSER', 'postgres'),
+#         'PASSWORD': os.environ.get('PGPASSWORD'),
+#         'HOST': os.getenv('PGHOST', 'switchback.proxy.rlwy.net'),
+#         'PORT': os.getenv('PGPORT'),
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
@@ -191,8 +198,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATICFILES_DIRS = [BASE_DIR / 'static']
 
 # white noise static stuff
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
@@ -209,4 +216,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY', '')
 STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY', '')
 
-PORT = os.getenv("PORT", "8000")
+# PORT = os.getenv("PORT", "8000")
