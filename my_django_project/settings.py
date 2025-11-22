@@ -144,18 +144,55 @@ AUTH_USER_MODEL = 'accounts.Account'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-DATABASE_URL = os.getenv("DATABASE_URL")
+BASE_DIR = Path(__file__).resolve().parent.parent
 
-if DATABASE_URL and DATABASE_URL.startswith("postgres"):
-    # Running on Railway
+# Use SQLite as fallback when PostgreSQL fails
+DATABASE_URL = os.environ.get('DATABASE_URL')
+
+if DATABASE_URL and 'postgres' in DATABASE_URL:
+    try:
+        # Try PostgreSQL first
+        import dj_database_url
+        DATABASES = {
+            'default': dj_database_url.config(
+                default=DATABASE_URL,
+                conn_max_age=600,
+                conn_health_checks=True,
+            )
+        }
+        # Test connection
+        from django.db import connection
+        connection.ensure_connection()
+        print("✅ Using PostgreSQL database")
+    except Exception as e:
+        print(f"❌ PostgreSQL failed, falling back to SQLite: {e}")
+        DATABASES = {
+            'default': {
+                'ENGINE': 'django.db.backends.sqlite3',
+                'NAME': BASE_DIR / 'db.sqlite3',
+            }
+        }
+else:
+    # Fallback to SQLite
     DATABASES = {
-        "default": dj_database_url.config(
-            default=os.environ.get('DATABASE_URL'),
-            conn_max_age=600,
-            conn_health_checks=True,
-            ssl_require=True
-        )
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
     }
+
+# DATABASE_URL = os.getenv("DATABASE_URL")
+
+# if DATABASE_URL and DATABASE_URL.startswith("postgres"):
+#     # Running on Railway
+#     DATABASES = {
+#         "default": dj_database_url.config(
+#             default=os.environ.get('DATABASE_URL'),
+#             conn_max_age=600,
+#             conn_health_checks=True,
+#             ssl_require=True
+#         )
+#     }
 
 # # Add connection timeout and retry settings
 # DATABASES['default']['OPTIONS'] = {
@@ -165,24 +202,24 @@ if DATABASE_URL and DATABASE_URL.startswith("postgres"):
 #     'keepalives_interval': 10,
 #     'keepalives_count': 5,
 # }
-else:
-   # Running locally
-    DATABASES = {
-     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-       }
-    }
+# else:
+#    # Running locally
+#     DATABASES = {
+#      "default": {
+#         "ENGINE": "django.db.backends.sqlite3",
+#         "NAME": BASE_DIR / "db.sqlite3",
+#        }
+#     }
            
 
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': os.getenv('PGDATABASE', 'railway'),
-#         'USER': os.getenv('PGUSER', 'postgres'),
-#         'PASSWORD': os.environ.get('PGPASSWORD'),
-#         'HOST': os.getenv('PGHOST', 'switchback.proxy.rlwy.net'),
-#         'PORT': os.getenv('PGPORT'),
+#        'ENGINE': 'django.db.backends.postgresql',
+#        'NAME': os.getenv('PGDATABASE', 'railway'),
+#        'USER': os.getenv('PGUSER', 'postgres'),
+#        'PASSWORD': os.environ.get('PGPASSWORD'),
+#        'HOST': os.getenv('PGHOST', 'switchback.proxy.rlwy.net'),
+#        'PORT': os.getenv('PGPORT'),
 #     }
 # }
 
