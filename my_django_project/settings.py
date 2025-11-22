@@ -40,7 +40,7 @@ ALLOWED_HOSTS = [
     "mydjangoproject-production.up.railway.app",
     "localhost",
     "127.0.0.1",
-    "railway.app",
+    ".railway.app",
     ]
 CSRF_TRUSTED_ORIGINS = [
     "https://mydjangoproject-production.up.railway.app",
@@ -150,19 +150,29 @@ if DATABASE_URL and DATABASE_URL.startswith("postgres"):
     # Running on Railway
     DATABASES = {
         "default": dj_database_url.config(
-            default=DATABASE_URL,
+            default=os.environ.get('DATABASE_URL'),
             conn_max_age=600,
+            conn_health_checks=True,
             ssl_require=True
         )
     }
-else:
-    # Running locally
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.sqlite3",
-            "NAME": BASE_DIR / "db.sqlite3",
-        }
-    }
+
+# Add connection timeout and retry settings
+DATABASES['default']['OPTIONS'] = {
+    'connect_timeout': 10,
+    'keepalives': 1,
+    'keepalives_idle': 30,
+    'keepalives_interval': 10,
+    'keepalives_count': 5,
+}
+# else:
+#     # Running locally
+#     DATABASES = {
+#         "default": {
+#             "ENGINE": "django.db.backends.sqlite3",
+#             "NAME": BASE_DIR / "db.sqlite3",
+#         }
+#     }
            
 
 # DATABASES = {
@@ -214,10 +224,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
-
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # white noise static stuff
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
