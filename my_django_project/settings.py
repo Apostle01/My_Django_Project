@@ -157,22 +157,22 @@ if DATABASE_URL and DATABASE_URL.startswith("postgres"):
         )
     }
 
-# Add connection timeout and retry settings
-DATABASES['default']['OPTIONS'] = {
-    'connect_timeout': 10,
-    'keepalives': 1,
-    'keepalives_idle': 30,
-    'keepalives_interval': 10,
-    'keepalives_count': 5,
-}
-# else:
-#     # Running locally
-#     DATABASES = {
-#         "default": {
-#             "ENGINE": "django.db.backends.sqlite3",
-#             "NAME": BASE_DIR / "db.sqlite3",
-#         }
-#     }
+# # Add connection timeout and retry settings
+# DATABASES['default']['OPTIONS'] = {
+#     'connect_timeout': 10,
+#     'keepalives': 1,
+#     'keepalives_idle': 30,
+#     'keepalives_interval': 10,
+#     'keepalives_count': 5,
+# }
+else:
+   # Running locally
+    DATABASES = {
+     "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
+       }
+    }
            
 
 # DATABASES = {
