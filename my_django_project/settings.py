@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 import os
-import dj_database_url
+# import dj_database_url
 from pathlib import Path
 try:
     from dotenv import load_dotenv
@@ -146,40 +146,48 @@ AUTH_USER_MODEL = 'accounts.Account'
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Use SQLite as fallback when PostgreSQL fails
-DATABASE_URL = os.environ.get('DATABASE_URL')
-
-if DATABASE_URL and 'postgres' in DATABASE_URL:
-    try:
-        # Try PostgreSQL first
-        import dj_database_url
-        DATABASES = {
-            'default': dj_database_url.config(
-                default=DATABASE_URL,
-                conn_max_age=600,
-                conn_health_checks=True,
-            )
-        }
-        # Test connection
-        from django.db import connection
-        connection.ensure_connection()
-        print("✅ Using PostgreSQL database")
-    except Exception as e:
-        print(f"❌ PostgreSQL failed, falling back to SQLite: {e}")
-        DATABASES = {
-            'default': {
-                'ENGINE': 'django.db.backends.sqlite3',
-                'NAME': BASE_DIR / 'db.sqlite3',
-            }
-        }
-else:
-    # Fallback to SQLite
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
+# FORCE SQLITE - Remove PostgreSQL completely for now
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
+}
+
+# Use SQLite as fallback when PostgreSQL fails
+# DATABASE_URL = os.environ.get('DATABASE_URL')
+
+# if DATABASE_URL and 'postgres' in DATABASE_URL:
+#     try:
+#         # Try PostgreSQL first
+#         import dj_database_url
+#         DATABASES = {
+#             'default': dj_database_url.config(
+#                 default=DATABASE_URL,
+#                 conn_max_age=600,
+#                 conn_health_checks=True,
+#             )
+#         }
+#         # Test connection
+#         from django.db import connection
+#         connection.ensure_connection()
+#         print("✅ Using PostgreSQL database")
+#     except Exception as e:
+#         print(f"❌ PostgreSQL failed, falling back to SQLite: {e}")
+#         DATABASES = {
+#             'default': {
+#                 'ENGINE': 'django.db.backends.sqlite3',
+#                 'NAME': BASE_DIR / 'db.sqlite3',
+#             }
+#         }
+# else:
+#     # Fallback to SQLite
+#     DATABASES = {
+#         'default': {
+#             'ENGINE': 'django.db.backends.sqlite3',
+#             'NAME': BASE_DIR / 'db.sqlite3',
+#         }
+    #}
 
 # DATABASE_URL = os.getenv("DATABASE_URL")
 
