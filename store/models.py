@@ -7,7 +7,7 @@ class Product(models.Model):
     slug         = models.SlugField(max_length=200, unique=True)
     description  = models.TextField(max_length=200, unique=True)
     price        = models.IntegerField()
-    image        = CloudinaryField('image', folder='products')# models.ImageField(upload_to='photos/products')
+    image        = CloudinaryField('image', folder='products')
     stock        = models.IntegerField()
     is_available = models.BooleanField(default=True)
     category     = models.ForeignKey('category.Category', on_delete=models.CASCADE, related_name="store_products")
@@ -18,7 +18,6 @@ class Product(models.Model):
         if not self.slug:
             self.slug = slugify(self.name)
         super().save(*args, **kwargs)
-    # class Meta:
-    #     ordering = ['-created_at']
+    
     def __str__(self):
         return self.name
