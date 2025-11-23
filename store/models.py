@@ -1,5 +1,4 @@
 from django.db import models
-from category.models import Category
 from django.utils.text import slugify
 from cloudinary.models import CloudinaryField
 
@@ -11,7 +10,7 @@ class Product(models.Model):
     image        = CloudinaryField('image', folder='products')# models.ImageField(upload_to='photos/products')
     stock        = models.IntegerField()
     is_available = models.BooleanField(default=True)
-    category     = models.ForeignKey(Category, on_delete=models.CASCADE, related_name="store_products")
+    category     = models.ForeignKey('category.Category', on_delete=models.CASCADE, related_name="store_products")
     created_date = models.DateTimeField(auto_now_add=True)
     modified_date= models.DateTimeField(auto_now=True)
     

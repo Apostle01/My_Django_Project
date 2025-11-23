@@ -1,3 +1,4 @@
 from django.db import models
 
-# Create your models here.
+class BagItem(models.Model):
+    product = models.ForeignKey('store.Product', on_delete=models.CASCADE)
