@@ -13,6 +13,10 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 import os
 import dj_database_url
 from pathlib import Path
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+
 try:
     from dotenv import load_dotenv
 except ImportError:
@@ -23,6 +27,11 @@ except ImportError:
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# CLOUDINARY_STORAGE = {
+#     'CLOUD_NAME': 'duqx3cb0d',
+#     'API_KEY': '212367572824925',
+#     'API_SECRET': 'S8Yr1ccbxoLKGdCdJQTOxeTUwMA',
+# }
 
 # Load environment variables
 load_dotenv(os.path.join(BASE_DIR, '.env'))
@@ -74,6 +83,8 @@ INSTALLED_APPS = [
     'crispy_forms',
     'crispy_bootstrap4',
     'whitenoise.runserver_nostatic',
+    'cloudinary',
+    'cloudinary_storage',
 ]
 
 # django-crispy-forms configuration
@@ -214,9 +225,10 @@ STATICFILES_DIRS = [BASE_DIR / 'static']
 # white noise static stuff
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-
+CLOUDINARY_URL = os.environ.get("CLOUDINARY_URL")
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
