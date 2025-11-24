@@ -8,6 +8,8 @@ from django.conf.urls.static import static
 urlpatterns = [
     # path('admin/', admin.site.urls),
     path('', views.index, name='home'),
+    path('about/', views.about, name='about'),
+    path('contact/', views.contact, name='contact'),
     # path('accounts/', include('allauth.urls')),  # User authentication
     # path('cloth/', include('cloth.urls')),  # Routes to the cloth app (for managing cloths like kente)
 ]
