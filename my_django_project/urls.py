@@ -14,19 +14,6 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-# from django.shortcuts import render
-# from django.contrib import admin
-# from django.urls import path, include
-# from django.conf import settings
-# from django.conf.urls.static import static
-# from products import views  # Import the views from your 'products' app
-# from home import views as home_views
-
-# def about(request):
-#     return render(request, "about.html")
-
-# def contact(request):
-#     return render(request, "contact.html")
 
 from django.contrib import admin
 from django.urls import path, include
@@ -46,7 +33,7 @@ path('accounts/', include('allauth.urls')),
 
 
 if settings.DEBUG:
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
 
