@@ -1,4 +1,4 @@
-from .models import Category
+from category.models import Category
 
 def categories_processor(request):
     return {
